@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
             mViewModel.apply {
                 requireLogin.observe(this@MainActivity, {
                     if (it == true) {
-                        startClearActivity(LoginActivity::class)
+                        startClearActivity(LoginActivity::class.java)
                     } else {
-                        startClearActivity(HomeActivity::class)
+                        startClearActivity(HomeActivity::class.java)
                     }
                 })
             }

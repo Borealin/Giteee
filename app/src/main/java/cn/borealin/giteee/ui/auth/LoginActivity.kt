@@ -45,11 +45,11 @@ class LoginActivity : AppCompatActivity() {
                         when (it.status) {
                             Status.SUCCESS -> {
                                 ToastUtils.show(this, getString(R.string.login_succeed))
-                                startClearActivity(HomeActivity::class)
+                                startClearActivity(HomeActivity::class.java)
                             }
                             Status.ERROR -> {
                                 ToastUtils.show(this, getString(R.string.login_failed))
-                                startNewActivity(LoginActivity::class)
+                                startNewActivity(LoginActivity::class.java)
                             }
                             else -> {
                             }

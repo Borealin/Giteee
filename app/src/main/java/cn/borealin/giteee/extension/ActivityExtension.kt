@@ -9,10 +9,9 @@ package cn.borealin.giteee.extension
 import android.app.Activity
 import android.content.Context
 import android.content.Intent
-import kotlin.reflect.KClass
 
-fun <T : Context> Activity.startNewActivity(tClass: KClass<T>) {
-    tClass.objectInstance?.let {
+fun <T : Context> Activity.startNewActivity(tClass: Class<T>) {
+    tClass.newInstance().let {
         finish()
         overridePendingTransition(0, 0)
         startActivity(it.newIntent(this))
@@ -27,8 +26,8 @@ fun Activity.startNewActivity(intent: Intent) {
     overridePendingTransition(0, 0)
 }
 
-fun <T : Context> Activity.startClearActivity(tClass: KClass<T>) {
-    tClass.objectInstance?.let {
+fun <T : Context> Activity.startClearActivity(tClass: Class<T>) {
+    tClass.newInstance().let {
         finish()
         overridePendingTransition(0, 0)
         startActivity(it.newClearIntent(this))
