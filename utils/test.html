@@ -1,0 +1,134 @@
+'
+<!DOCTYPE html>\n
+<html lang="zh-CN">\n
+
+<head>\n
+    <meta content="authenticity_token" name="csrf-param"/>
+    \n
+    <meta content="B8sfCjv3qS8ItMhPCbrEGlR91VLAD9Uc6fcuJbeaw8w=" name="csrf-token"/>
+    \n
+    <script>
+        \n   //<![CDATA[\nwindow.gon = {};gon.locale="zh-CN";gon.sentry_dsn=null;gon.baidu_register_hm_push=null;gon.sensor={"server_url":"https://haveaniceday.gitee.com:3443/sa?project=production"};gon.info={"controller_path":"swagger","action_name":"index","current_user":false};gon.tour_env={"current_user":null,"action_name":"index","original_url":"http://gitee.com/api/v5/swagger","controller_path":"swagger"};gon.doc_version="5.3.88";\n//]]>\n
+    </script>
+    \n
+    <link href="https://assets.gitee.com/assets/grape_swagger_rails/application-4b3d3d9c0ddfc827eb0adfeec0ae5baa.css"
+          media="all" rel="stylesheet"/>
+    \n
+    <script
+            src="https://assets.gitee.com/assets/grape_swagger_rails/application-5b18ac9a342c3469821515d869f9d435.js">
+        \n
+    </script>
+    \n
+    <link href="https://assets.gitee.com/assets/favicon-9007bd527d8a7851c8330e783151df58.ico"
+          rel="shortcut icon"
+          type="image/vnd.microsoft.icon"/>
+    \n
+</head>
+\n
+
+<body class="page-docs" style="zoom: 1;">\n
+<div class="fixed-notice-infos">\n
+    <div class="all-messages">\n
+        <div
+                class="ui info message" id="git-bulletin">\n <a
+                href="https://gitee.com/gitee-community/opensource-guide/blob/master/Revision-activities.md"
+                target="_blank">\n 开源爱好者速进：《开源指北》邀你一起进行最终修订\n </a>\n <i class="icon remove"
+                                                                        id="remove-bulletin">\n
+        </i>\n
+        </div>
+        \n
+    </div>
+    \n
+    <div class="ui container">\n
+        <div class="flash-messages"
+             id="messages-container">\n
+        </div>
+        \n
+    </div>
+    \n
+    <script>\n(function () {
+            \n    $(function () {
+            \n      var $error_box, alertTip, notify_content, notify_options, template; \n      template = \'<div data-notify="container" class="ui {0} message" role="alert">\' + \'<i data-notify="dismiss" class="close icon"></i>\' + \'<span data-notify="message">{2}</span>\' + \'</div>\';\n      notify_content = null;\n      notify_options = {};\n      alertTip = \'\';\n      $error_box = $(".flash_error.flash_error_box");\n      if (notify_options.type === \'error\' && $error_box.length > 0 && !$.isEmptyObject(notify_content.message)) {\n        if (notify_content.message === \'captcha_fail\') {\n          alertTip = "验证码不正确";\n        } else if (notify_content.message === \'captcha_expired\') {\n          alertTip = "验证码已过期，请点击刷新";\n        } else if (notify_content.message === \'not_found_in_database\') {\n          alertTip = "帐号或者密码错误";\n        } else if (notify_content.message === \'not_found_and_show_captcha\') {\n          alertTip = "帐号或者密码错误";\n        } else if (notify_content.message === \'phone_captcha_fail\') {\n          alertTip = "手机验证码不通过";\n        } else {\n          alertTip = notify_content.message;\n        }\n        return $error_box.html(alertTip).show();\n      } else if (notify_content) {\n        if ("index" === \'third_party_binding\') {\n          return $(\'#third_party_binding-message\').html(notify_content.message).addClass(\'ui message red\');\n        }\n        notify_options.delay = 3000;\n        notify_options.template = template;\n        notify_options.offset = {\n          x: 10,\n          y: 30\n        };\n        notify_options.element = \'#messages-container\';\n        return $.notify(notify_content, notify_options);\n      }\n    });\n  \n  }).call(this);\n
+    </script>
+    \n
+</div>
+\n
+<script>\n(function () {
+                    \n    $(function () {
+                    \n      var setCookie; \n      setCookie = function (name, value) {
+                    \n        $.cookie(name, value, {
+                    \n          path: \'/\',\n          expires: 365\n        });\n      };\n      $(\'#remove-bulletin, #remove-bulletin-dashboard\').on(\'click\', function() {\n        setCookie(\'remove_bulletin\', "gitee-maintain-1607604291");\n        $(\'#git-bulletin\').hide();\n      });\n      $(\'#remove-member-bulletin\').on(\'click\', function() {\n        setCookie(\'remove_member_bulletin\', "gitee_member_bulletin");\n        $(this).parent().hide();\n      });\n      return $(\'#remove-gift-bulletin\').on(\'click\', function() {\n        setCookie(\'remove_gift_bulletin\', "gitee-gift-bulletin");\n        $(this).parent().hide();\n      });\n    });\n  \n  }).call(this);\n
+</script>
+\n
+<script>\n   function closeMessageBanner(pthis, type, val) {
+                \n    var json = {}\n  \n    val = typeof val === \'undefined\' ? null : val\n    $(pthis).parent().remove()\n    if (type === \'out_of_enterprise_member\') {\n      json = {type: type, data: val}\n    } else if (type === \'enterprise_overdue\') {\n      json = {type: type, data: val}\n    }\n    $.post(\'/profile/close_flash_tip\', json)\n  }\n
+</script>
+\n
+<header id="git-header-nav">\n
+    <div class="ui container">\n
+        <div class="ui menu">\n
+            <div
+                    class="item gitosc-logo">\n <a href="/">\n <img alt="logo"
+                                                                    class="ui inline image"
+                                                                    src="/static/images/logo.svg?t=158106664"/>\n
+            </a>\n
+            </div>
+            \n
+            <div class="item developer">
+                \n Developer\n
+            </div>
+            \n
+            <div class="right menu userbar">\n <a class="item git-nav-user__login-item"
+                                                  href="/login" sa_evt="login_show"
+                                                  sa_referrer_action="站导航右上角-登录按钮"
+                                                  sa_referrer_url="">\n 登录\n
+            </a>\n <a class="item git-nav-user__register-item" href="/signup" sa_evt="register_show"
+                      sa_referrer_action="站导航右上角-注册按钮" sa_referrer_url="">\n 注册\n </a>\n
+                <script>
+                    \n       $(\'.destroy-user-session\').on(\'click\', function() {\n    $.cookie(\'access_token\', null, { path: \'/\' });\n  })\n
+                </script>
+                \n
+            </div>
+            \n
+        </div>
+        \n
+    </div>
+    \n
+</header>
+\n
+<div class="ui secondary pointing menu" id="api-doc-menu">\n <a
+        class="active item" href="/api/v5/swagger">\n API 文档\n </a>\n <a class="item"
+                                                                         href="/api/v5/oauth_doc">\n
+    OAuth文档\n </a>\n <a class="ui button apply-oauth"
+                        href="/oauth/authorize?client_id=8ac7a94ff19ddb4b9d267d525c048e2845f589cf3b1e8d09ef2568ca63f74603&amp;redirect_uri=https%3A%2F%2Fgitee.com%2Fapi%2Fv5%2Fswagger&amp;response_type=code">\n
+    申请授权\n </a>\n
+</div>
+\n
+<script>
+    \n   $(\'#git-header-nav .ui.dropdown\').dropdown({on: \'hover\'});\n  \n  function deleteCookie(name) {\n    document.cookie = name +\'=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;\';\n  };\n  $(\'a#logout\').click(function () {\n    if (false) {\n      deleteCookie(\'enterprise_access_token\');\n    } else {\n      deleteCookie(\'access_token\');\n    }\n    location.reload();\n  });\n  \n  $(\'.destroy-user-session\').on(\'click\', function() {\n    deleteCookie(\'access_token\');\n    deleteCookie(\'enterprise_access_token\');\n  });\n
+</script>
+\n
+<script>
+    \n   var userAgent = navigator.userAgent; \n  var isLessIE11 = userAgent.indexOf(\'compatible\') > -1 && userAgent.indexOf(\'MSIE\') > -1;\n  if(isLessIE11){\n    var can_access = ""\n    if (can_access != "true"){\n      window.location.href = "/incompatible.html";\n    }\n  }\n
+</script>
+\n <title>\n Gitee API 文档\n </title>\n
+<link href="https://assets.gitee.com/webpacks/css/api_doc-49f9ea4f81dff1c52eff.css" media="all"
+      rel="stylesheet"/>
+\n
+<div id="app">\n</div>
+\n
+<script src="https://assets.gitee.com/webpacks/vendors_lib-7ff466a6da368d391eda.js">\n  </script>
+\n
+<script src="https://assets.gitee.com/webpacks/api_doc-07ecdbff61f8aa885b2b.bundle.js">\n  </script>
+\n
+</body>
+\n
+<div class="side-toolbar">\n
+    <div class="button gotop popup" data-content="回到顶部" data-position="left center"
+         id="gotop">\n <i class="iconfont icon-top">\n </i>\n
+    </div>
+    \n
+</div>
+\n
+
+</html>\n'

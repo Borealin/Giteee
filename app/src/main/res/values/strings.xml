@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Giteee</string>
+    <string name="save_value">Save Value</string>
+    <string name="jump_to_login_activity">Jump to Login Activity</string>
+    <string name="login_activity_title">Login</string>
+    <string name="login_succeed">Login succeed</string>
+    <string name="login_failed">Login failed</string>
+</resources>

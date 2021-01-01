@@ -1,0 +1,646 @@
+<html>
+
+<body>
+<ul>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 动态通知
+            <span class="gray">Activity</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoStargazers" class="router-link-active">
+                <li class="openPath">列出 star 了仓库的用户</li>
+            </a><a href="#/getV5ReposOwnerRepoSubscribers" class="">
+            <li class="">列出 watch 了仓库的用户</li>
+        </a><a href="#/getV5ReposOwnerRepoEvents" class="">
+            <li class="">列出仓库的所有动态</li>
+        </a><a href="#/getV5ReposOwnerRepoNotifications" class="">
+            <li class="">列出一个仓库里的通知</li>
+        </a><a href="#/putV5ReposOwnerRepoNotifications" class="">
+            <li class="">标记一个仓库里的通知为已读</li>
+        </a><a href="#/getV5UserStarred" class="">
+            <li class="">列出授权用户 star 了的仓库</li>
+        </a><a href="#/getV5UserSubscriptions" class="">
+            <li class="">列出授权用户 watch 了的仓库</li>
+        </a><a href="#/getV5UserStarredOwnerRepo" class="">
+            <li class="">检查授权用户是否 star 了一个仓库</li>
+        </a><a href="#/putV5UserStarredOwnerRepo" class="">
+            <li class="">star 一个仓库</li>
+        </a><a href="#/deleteV5UserStarredOwnerRepo" class="">
+            <li class="">取消 star 一个仓库</li>
+        </a><a href="#/getV5UserSubscriptionsOwnerRepo" class="">
+            <li class="">检查授权用户是否 watch 了一个仓库</li>
+        </a><a href="#/putV5UserSubscriptionsOwnerRepo" class="">
+            <li class="">watch 一个仓库</li>
+        </a><a href="#/deleteV5UserSubscriptionsOwnerRepo" class="">
+            <li class="">取消 watch 一个仓库</li>
+        </a><a href="#/getV5UsersUsernameStarred" class="">
+            <li class="">列出用户 star 了的仓库</li>
+        </a><a href="#/getV5UsersUsernameSubscriptions" class="">
+            <li class="">列出用户 watch 了的仓库</li>
+        </a><a href="#/getV5UsersUsernameReceivedEvents" class="">
+            <li class="">列出一个用户收到的动态</li>
+        </a><a href="#/getV5UsersUsernameReceivedEventsPublic" class="">
+            <li class="">列出一个用户收到的公开动态</li>
+        </a><a href="#/getV5UsersUsernameEvents" class="">
+            <li class="">列出用户的动态</li>
+        </a><a href="#/getV5UsersUsernameEventsPublic" class="">
+            <li class="">列出用户的公开动态</li>
+        </a><a href="#/getV5UsersUsernameEventsOrgsOrg" class="">
+            <li class="">列出用户所属组织的动态</li>
+        </a><a href="#/getV5OrgsOrgEvents" class="">
+            <li class="">列出组织的公开动态</li>
+        </a><a href="#/getV5NetworksOwnerRepoEvents" class="">
+            <li class="">列出仓库的所有公开动态</li>
+        </a><a href="#/getV5NotificationsCount" class="">
+            <li class="">获取授权用户的通知数</li>
+        </a><a href="#/getV5NotificationsThreads" class="">
+            <li class="">列出授权用户的所有通知</li>
+        </a><a href="#/putV5NotificationsThreads" class="">
+            <li class="">标记所有通知为已读</li>
+        </a><a href="#/getV5NotificationsThreadsId" class="">
+            <li class="">获取一条通知</li>
+        </a><a href="#/patchV5NotificationsThreadsId" class="">
+            <li class="">标记一条通知为已读</li>
+        </a><a href="#/getV5NotificationsMessages" class="">
+            <li class="">列出授权用户的所有私信</li>
+        </a><a href="#/putV5NotificationsMessages" class="">
+            <li class="">标记所有私信为已读</li>
+        </a><a href="#/postV5NotificationsMessages" class="">
+            <li class="">发送私信给指定用户</li>
+        </a><a href="#/getV5NotificationsMessagesId" class="">
+            <li class="">获取一条私信</li>
+        </a><a href="#/patchV5NotificationsMessagesId" class="">
+            <li class="">标记一条私信为已读</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 邮箱
+            <span class="gray">Emails</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5Emails" class="">
+                <li class="">获取授权用户的全部邮箱</li>
+            </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 企业
+            <span class="gray">Enterprises</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5UserEnterprises" class="">
+                <li class="">列出授权用户所属的企业</li>
+            </a><a href="#/getV5EnterprisesEnterprise" class="">
+            <li class="">获取一个企业</li>
+        </a><a href="#/getV5EnterprisesEnterpriseMembers" class="">
+            <li class="">列出企业的所有成员</li>
+        </a><a href="#/postV5EnterprisesEnterpriseMembers" class="">
+            <li class="">添加或邀请企业成员</li>
+        </a><a href="#/getV5EnterprisesEnterpriseMembersSearch" class="">
+            <li class="">获取企业成员信息(通过用户名/邮箱)</li>
+        </a><a href="#/getV5EnterprisesEnterpriseWeekReportsIdComments" class="">
+            <li class="">某个周报评论列表</li>
+        </a><a href="#/postV5EnterprisesEnterpriseWeekReportsIdComment" class="">
+            <li class="">评论周报</li>
+        </a><a href="#/deleteV5EnterprisesEnterpriseWeekReportsReportIdCommentsId" class="">
+            <li class="">删除周报某个评论</li>
+        </a><a href="#/getV5EnterprisesEnterpriseUsersUsernameWeekReports" class="">
+            <li class="">个人周报列表</li>
+        </a><a href="#/getV5EnterprisesEnterpriseWeekReports" class="">
+            <li class="">企业成员周报列表</li>
+        </a><a href="#/getV5EnterprisesEnterpriseWeekReportsId" class="">
+            <li class="">周报详情</li>
+        </a><a href="#/patchV5EnterprisesEnterpriseWeekReportId" class="">
+            <li class="">编辑周报</li>
+        </a><a href="#/postV5EnterprisesEnterpriseWeekReport" class="">
+            <li class="">新建周报</li>
+        </a><a href="#/getV5EnterprisesEnterpriseMembersUsername" class="">
+            <li class="">获取企业的一个成员</li>
+        </a><a href="#/deleteV5EnterprisesEnterpriseMembersUsername" class="">
+            <li class="">移除企业成员</li>
+        </a><a href="#/putV5EnterprisesEnterpriseMembersUsername" class="">
+            <li class="">修改企业成员权限或备注</li>
+        </a><a href="#/getV5EnterpriseEnterprisePullRequests" class="">
+            <li class="">企业Pull Reuqest 列表</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 代码片段
+            <span class="gray">Gists</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5Gists" class="">
+                <li class="">获取代码片段</li>
+            </a><a href="#/postV5Gists" class="">
+            <li class="">创建代码片段</li>
+        </a><a href="#/getV5GistsStarred" class="">
+            <li class="">获取用户Star的代码片段</li>
+        </a><a href="#/getV5GistsGistIdComments" class="">
+            <li class="">获取代码片段的评论</li>
+        </a><a href="#/postV5GistsGistIdComments" class="">
+            <li class="">增加代码片段的评论</li>
+        </a><a href="#/getV5GistsGistIdCommentsId" class="">
+            <li class="">获取单条代码片段的评论</li>
+        </a><a href="#/patchV5GistsGistIdCommentsId" class="">
+            <li class="">修改代码片段的评论</li>
+        </a><a href="#/deleteV5GistsGistIdCommentsId" class="">
+            <li class="">删除代码片段的评论</li>
+        </a><a href="#/getV5GistsId" class="">
+            <li class="">获取单条代码片段</li>
+        </a><a href="#/patchV5GistsId" class="">
+            <li class="">修改代码片段</li>
+        </a><a href="#/deleteV5GistsId" class="">
+            <li class="">删除指定代码片段</li>
+        </a><a href="#/getV5GistsIdCommits" class="">
+            <li class="">获取代码片段的commit</li>
+        </a><a href="#/putV5GistsIdStar" class="">
+            <li class="">Star代码片段</li>
+        </a><a href="#/deleteV5GistsIdStar" class="">
+            <li class="">取消Star代码片段</li>
+        </a><a href="#/getV5GistsIdStar" class="">
+            <li class="">判断代码片段是否已Star</li>
+        </a><a href="#/postV5GistsIdForks" class="">
+            <li class="">Fork代码片段</li>
+        </a><a href="#/getV5GistsIdForks" class="">
+            <li class="">获取 Fork 了指定代码片段的列表</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 仓库数据
+            <span class="gray">Git Data</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoGitBlobsSha" class="">
+                <li class="">获取文件Blob</li>
+            </a><a href="#/getV5ReposOwnerRepoGitTreesSha" class="">
+            <li class="">获取目录Tree</li>
+        </a><a href="#/getV5ReposOwnerRepoGitGiteeMetrics" class="">
+            <li class="">获取 Gitee 指数</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> Issues /
+            任务 <span class="gray">Issues</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoIssues" class="">
+                <li class="">仓库的所有Issues</li>
+            </a><a href="#/getV5ReposOwnerRepoIssuesNumber" class="">
+            <li class="">仓库的某个Issue</li>
+        </a><a href="#/postV5ReposOwnerIssues" class="">
+            <li class="">创建Issue</li>
+        </a><a href="#/patchV5ReposOwnerIssuesNumber" class="">
+            <li class="">更新Issue</li>
+        </a><a href="#/getV5ReposOwnerIssuesNumberPullRequests" class="">
+            <li class="">获取 issue 关联的 Pull Requests</li>
+        </a><a href="#/getV5ReposOwnerIssuesNumberOperateLogs" class="">
+            <li class="">获取某个Issue下的操作日志</li>
+        </a><a href="#/getV5ReposOwnerRepoIssuesComments" class="">
+            <li class="">获取仓库所有Issue的评论</li>
+        </a><a href="#/getV5ReposOwnerRepoIssuesNumberComments" class="">
+            <li class="">获取仓库某个Issue所有的评论</li>
+        </a><a href="#/postV5ReposOwnerRepoIssuesNumberComments" class="">
+            <li class="">创建某个Issue评论</li>
+        </a><a href="#/getV5ReposOwnerRepoIssuesCommentsId" class="">
+            <li class="">获取仓库Issue某条评论</li>
+        </a><a href="#/patchV5ReposOwnerRepoIssuesCommentsId" class="">
+            <li class="">更新Issue某条评论</li>
+        </a><a href="#/deleteV5ReposOwnerRepoIssuesCommentsId" class="">
+            <li class="">删除Issue某条评论</li>
+        </a><a href="#/getV5UserIssues" class="">
+            <li class="">获取授权用户的所有Issues</li>
+        </a><a href="#/getV5OrgsOrgIssues" class="">
+            <li class="">获取当前用户某个组织的Issues</li>
+        </a><a href="#/getV5Issues" class="">
+            <li class="">获取当前授权用户的所有Issues</li>
+        </a><a href="#/getV5EnterprisesEnterpriseIssues" class="">
+            <li class="">获取某个企业的所有Issues</li>
+        </a><a href="#/getV5EnterprisesEnterpriseIssuesNumber" class="">
+            <li class="">获取企业的某个Issue</li>
+        </a><a href="#/patchV5EnterprisesEnterpriseIssuesNumber" class="">
+            <li class="">更新企业的某个Issue</li>
+        </a><a href="#/getV5EnterprisesEnterpriseIssuesNumberPullRequests" class="">
+            <li class="">获取企业 issue 关联的 Pull Requests</li>
+        </a><a href="#/getV5EnterprisesEnterpriseIssuesNumberComments" class="">
+            <li class="">获取企业某个Issue所有评论</li>
+        </a><a href="#/getV5EnterprisesEnterpriseIssuesNumberLabels" class="">
+            <li class="">获取企业某个Issue所有标签</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 标签
+            <span class="gray">Labels</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoLabels" class="">
+                <li class="">获取仓库所有任务标签</li>
+            </a><a href="#/postV5ReposOwnerRepoLabels" class="">
+            <li class="">创建仓库任务标签</li>
+        </a><a href="#/getV5ReposOwnerRepoLabelsName" class="">
+            <li class="">根据标签名称获取单个标签</li>
+        </a><a href="#/deleteV5ReposOwnerRepoLabelsName" class="">
+            <li class="">删除一个仓库任务标签</li>
+        </a><a href="#/patchV5ReposOwnerRepoLabelsOriginalName" class="">
+            <li class="">更新一个仓库任务标签</li>
+        </a><a href="#/getV5ReposOwnerRepoIssuesNumberLabels" class="">
+            <li class="">获取仓库任务的所有标签</li>
+        </a><a href="#/postV5ReposOwnerRepoIssuesNumberLabels" class="">
+            <li class="">创建Issue标签</li>
+        </a><a href="#/putV5ReposOwnerRepoIssuesNumberLabels" class="">
+            <li class="">替换Issue所有标签</li>
+        </a><a href="#/deleteV5ReposOwnerRepoIssuesNumberLabels" class="">
+            <li class="">删除Issue所有标签</li>
+        </a><a href="#/deleteV5ReposOwnerRepoIssuesNumberLabelsName" class="">
+            <li class="">删除Issue标签</li>
+        </a><a href="#/getV5EnterprisesEnterpriseLabels" class="">
+            <li class="">获取企业所有标签</li>
+        </a><a href="#/getV5EnterprisesEnterpriseLabelsName" class="">
+            <li class="">获取企业某个标签</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 里程碑
+            <span class="gray">Milestones</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoMilestones" class="">
+                <li class="">获取仓库所有里程碑</li>
+            </a><a href="#/postV5ReposOwnerRepoMilestones" class="">
+            <li class="">创建仓库里程碑</li>
+        </a><a href="#/getV5ReposOwnerRepoMilestonesNumber" class="">
+            <li class="">获取仓库单个里程碑</li>
+        </a><a href="#/patchV5ReposOwnerRepoMilestonesNumber" class="">
+            <li class="">更新仓库里程碑</li>
+        </a><a href="#/deleteV5ReposOwnerRepoMilestonesNumber" class="">
+            <li class="">删除仓库单个里程碑</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 杂项
+            <span class="gray">Miscellaneous</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoLicense" class="">
+                <li class="">获取一个仓库使用的开源许可协议</li>
+            </a><a href="#/getV5GitignoreTemplates" class="">
+            <li class="">列出可使用的 .gitignore 模板</li>
+        </a><a href="#/getV5GitignoreTemplatesName" class="">
+            <li class="">获取一个 .gitignore 模板</li>
+        </a><a href="#/getV5GitignoreTemplatesNameRaw" class="">
+            <li class="">获取一个 .gitignore 模板原始文件</li>
+        </a><a href="#/getV5Licenses" class="">
+            <li class="">列出可使用的开源许可协议</li>
+        </a><a href="#/getV5LicensesLicense" class="">
+            <li class="">获取一个开源许可协议</li>
+        </a><a href="#/getV5LicensesLicenseRaw" class="">
+            <li class="">获取一个开源许可协议原始文件</li>
+        </a><a href="#/postV5Markdown" class="">
+            <li class="">渲染 Markdown 文本</li>
+        </a><a href="#/getV5Emojis" class="">
+            <li class="">列出可使用的 Emoji</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 组织
+            <span class="gray">Organizations</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5UserOrgs" class="">
+                <li class="">列出授权用户所属的组织</li>
+            </a><a href="#/getV5UserMembershipsOrgs" class="">
+            <li class="">列出授权用户在所属组织的成员资料</li>
+        </a><a href="#/getV5UserMembershipsOrgsOrg" class="">
+            <li class="">获取授权用户在一个组织的成员资料</li>
+        </a><a href="#/patchV5UserMembershipsOrgsOrg" class="">
+            <li class="">更新授权用户在一个组织的成员资料</li>
+        </a><a href="#/deleteV5UserMembershipsOrgsOrg" class="">
+            <li class="">退出一个组织</li>
+        </a><a href="#/getV5UsersUsernameOrgs" class="">
+            <li class="">列出用户所属的组织</li>
+        </a><a href="#/postV5UsersOrganization" class="">
+            <li class="">创建组织</li>
+        </a><a href="#/getV5OrgsOrg" class="">
+            <li class="">获取一个组织</li>
+        </a><a href="#/patchV5OrgsOrg" class="">
+            <li class="">更新授权用户所管理的组织资料</li>
+        </a><a href="#/getV5OrgsOrgMembers" class="">
+            <li class="">列出一个组织的所有成员</li>
+        </a><a href="#/getV5OrgsOrgFollowers" class="">
+            <li class="">列出指定组织的所有关注者</li>
+        </a><a href="#/deleteV5OrgsOrgMembershipsUsername" class="">
+            <li class="">移除授权用户所管理组织中的成员</li>
+        </a><a href="#/getV5OrgsOrgMembershipsUsername" class="">
+            <li class="">获取授权用户所属组织的一个成员</li>
+        </a><a href="#/putV5OrgsOrgMembershipsUsername" class="">
+            <li class="">增加或更新授权用户所管理组织的成员</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> PR 操作
+            <span class="gray">Pull Requests</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoPulls" class="">
+                <li class="">获取Pull Request列表</li>
+            </a><a href="#/postV5ReposOwnerRepoPulls" class="">
+            <li class="">创建Pull Request</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsComments" class="">
+            <li class="">获取该仓库下的所有Pull Request评论</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumber" class="">
+            <li class="">获取单个Pull Request</li>
+        </a><a href="#/patchV5ReposOwnerRepoPullsNumber" class="">
+            <li class="">更新Pull Request信息</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberOperateLogs" class="">
+            <li class="">获取某个Pull Request的操作日志</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberCommits" class="">
+            <li class="">
+                获取某Pull Request的所有Commit信息。最多显示250条Commit
+            </li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberFiles" class="">
+            <li class="">Pull Request Commit文件列表。最多显示300条diff</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberMerge" class="">
+            <li class="">判断Pull Request是否已经合并</li>
+        </a><a href="#/putV5ReposOwnerRepoPullsNumberMerge" class="">
+            <li class="">合并Pull Request</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberReview" class="">
+            <li class="">处理 Pull Request 审查</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberTest" class="">
+            <li class="">处理 Pull Request 测试</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberAssignees" class="">
+            <li class="">指派用户审查 Pull Request</li>
+        </a><a href="#/deleteV5ReposOwnerRepoPullsNumberAssignees" class="">
+            <li class="">取消用户审查 Pull Request</li>
+        </a><a href="#/patchV5ReposOwnerRepoPullsNumberAssignees" class="">
+            <li class="">重置 Pull Request 审查 的状态</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberTesters" class="">
+            <li class="">指派用户测试 Pull Request</li>
+        </a><a href="#/deleteV5ReposOwnerRepoPullsNumberTesters" class="">
+            <li class="">取消用户测试 Pull Request</li>
+        </a><a href="#/patchV5ReposOwnerRepoPullsNumberTesters" class="">
+            <li class="">重置 Pull Request 测试 的状态</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberIssues" class="">
+            <li class="">获取 Pull Request 关联的 issues</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberComments" class="">
+            <li class="">获取某个Pull Request的所有评论</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberComments" class="">
+            <li class="">提交Pull Request评论</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsNumberLabels" class="">
+            <li class="">获取某个 Pull Request 的所有标签</li>
+        </a><a href="#/postV5ReposOwnerRepoPullsNumberLabels" class="">
+            <li class="">创建 Pull Request 标签</li>
+        </a><a href="#/putV5ReposOwnerRepoPullsNumberLabels" class="">
+            <li class="">替换 Pull Request 所有标签</li>
+        </a><a href="#/deleteV5ReposOwnerRepoPullsNumberLabelsName" class="">
+            <li class="">删除 Pull Request 标签</li>
+        </a><a href="#/getV5ReposOwnerRepoPullsCommentsId" class="">
+            <li class="">获取Pull Request的某个评论</li>
+        </a><a href="#/patchV5ReposOwnerRepoPullsCommentsId" class="">
+            <li class="">编辑评论</li>
+        </a><a href="#/deleteV5ReposOwnerRepoPullsCommentsId" class="">
+            <li class="">删除评论</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 仓库
+            <span class="gray">Repositories</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoBranches" class="">
+                <li class="">获取所有分支</li>
+            </a><a href="#/postV5ReposOwnerRepoBranches" class="">
+            <li class="">创建分支</li>
+        </a><a href="#/getV5ReposOwnerRepoBranchesBranch" class="">
+            <li class="">获取单个分支</li>
+        </a><a href="#/putV5ReposOwnerRepoBranchesBranchProtection" class="">
+            <li class="">设置分支保护</li>
+        </a><a href="#/deleteV5ReposOwnerRepoBranchesBranchProtection" class="">
+            <li class="">取消保护分支的设置</li>
+        </a><a href="#/getV5ReposOwnerRepoCommits" class="">
+            <li class="">仓库的所有提交</li>
+        </a><a href="#/getV5ReposOwnerRepoCommitsSha" class="">
+            <li class="">仓库的某个提交</li>
+        </a><a href="#/getV5ReposOwnerRepoCompareBase...Head" class="">
+            <li class="">两个Commits之间对比的版本差异</li>
+        </a><a href="#/getV5ReposOwnerRepoKeys" class="">
+            <li class="">获取仓库已部署的公钥</li>
+        </a><a href="#/postV5ReposOwnerRepoKeys" class="">
+            <li class="">为仓库添加公钥</li>
+        </a><a href="#/getV5ReposOwnerRepoKeysAvailable" class="">
+            <li class="">获取仓库可部署的公钥</li>
+        </a><a href="#/putV5ReposOwnerRepoKeysEnableId" class="">
+            <li class="">启用仓库公钥</li>
+        </a><a href="#/deleteV5ReposOwnerRepoKeysEnableId" class="">
+            <li class="">停用仓库公钥</li>
+        </a><a href="#/getV5ReposOwnerRepoKeysId" class="">
+            <li class="">获取仓库的单个公钥</li>
+        </a><a href="#/deleteV5ReposOwnerRepoKeysId" class="">
+            <li class="">删除一个仓库公钥</li>
+        </a><a href="#/getV5ReposOwnerRepoReadme" class="">
+            <li class="">获取仓库README</li>
+        </a><a href="#/getV5ReposOwnerRepoContents(Path)" class="">
+            <li class="">获取仓库具体路径下的内容</li>
+        </a><a href="#/postV5ReposOwnerRepoContentsPath" class="">
+            <li class="">新建文件</li>
+        </a><a href="#/putV5ReposOwnerRepoContentsPath" class="">
+            <li class="">更新文件</li>
+        </a><a href="#/deleteV5ReposOwnerRepoContentsPath" class="">
+            <li class="">删除文件</li>
+        </a><a href="#/getV5ReposOwnerRepoComments" class="">
+            <li class="">获取仓库的Commit评论</li>
+        </a><a href="#/getV5ReposOwnerRepoCommitsRefComments" class="">
+            <li class="">获取单个Commit的评论</li>
+        </a><a href="#/getV5ReposOwnerRepoCommentsId" class="">
+            <li class="">获取仓库的某条Commit评论</li>
+        </a><a href="#/patchV5ReposOwnerRepoCommentsId" class="">
+            <li class="">更新Commit评论</li>
+        </a><a href="#/deleteV5ReposOwnerRepoCommentsId" class="">
+            <li class="">删除Commit评论</li>
+        </a><a href="#/postV5ReposOwnerRepoCommitsShaComments" class="">
+            <li class="">创建Commit评论</li>
+        </a><a href="#/getV5ReposOwnerRepoPages" class="">
+            <li class="">获取Pages信息</li>
+        </a><a href="#/postV5ReposOwnerRepoPagesBuilds" class="">
+            <li class="">请求建立Pages</li>
+        </a><a href="#/getV5ReposOwnerRepo" class="">
+            <li class="">获取用户的某个仓库</li>
+        </a><a href="#/patchV5ReposOwnerRepo" class="">
+            <li class="">更新仓库设置</li>
+        </a><a href="#/deleteV5ReposOwnerRepo" class="">
+            <li class="">删除一个仓库</li>
+        </a><a href="#/putV5ReposOwnerRepoReviewer" class="">
+            <li class="">修改代码审查设置</li>
+        </a><a href="#/getV5ReposOwnerRepoContributors" class="">
+            <li class="">获取仓库贡献者</li>
+        </a><a href="#/getV5ReposOwnerRepoTags" class="">
+            <li class="">列出仓库所有的tags</li>
+        </a><a href="#/postV5ReposOwnerRepoTags" class="">
+            <li class="">创建一个仓库的 Tag</li>
+        </a><a href="#/putV5ReposOwnerRepoClear" class="">
+            <li class="">清空一个仓库</li>
+        </a><a href="#/getV5ReposOwnerRepoCollaborators" class="">
+            <li class="">获取仓库的所有成员</li>
+        </a><a href="#/getV5ReposOwnerRepoCollaboratorsUsername" class="">
+            <li class="">判断用户是否为仓库成员</li>
+        </a><a href="#/putV5ReposOwnerRepoCollaboratorsUsername" class="">
+            <li class="">添加仓库成员</li>
+        </a><a href="#/deleteV5ReposOwnerRepoCollaboratorsUsername" class="">
+            <li class="">移除仓库成员</li>
+        </a><a href="#/getV5ReposOwnerRepoCollaboratorsUsernamePermission" class="">
+            <li class="">查看仓库成员的权限</li>
+        </a><a href="#/getV5ReposOwnerRepoForks" class="">
+            <li class="">查看仓库的Forks</li>
+        </a><a href="#/postV5ReposOwnerRepoForks" class="">
+            <li class="">Fork一个仓库</li>
+        </a><a href="#/getV5ReposOwnerRepoReleases" class="">
+            <li class="">获取仓库的所有Releases</li>
+        </a><a href="#/postV5ReposOwnerRepoReleases" class="">
+            <li class="">创建仓库Release</li>
+        </a><a href="#/getV5ReposOwnerRepoReleasesId" class="">
+            <li class="">获取仓库的单个Releases</li>
+        </a><a href="#/patchV5ReposOwnerRepoReleasesId" class="">
+            <li class="">更新仓库Release</li>
+        </a><a href="#/deleteV5ReposOwnerRepoReleasesId" class="">
+            <li class="">删除仓库Release</li>
+        </a><a href="#/getV5ReposOwnerRepoReleasesLatest" class="">
+            <li class="">获取仓库的最后更新的Release</li>
+        </a><a href="#/getV5ReposOwnerRepoReleasesTagsTag" class="">
+            <li class="">根据Tag名称获取仓库的Release</li>
+        </a><a href="#/getV5UserRepos" class="">
+            <li class="">列出授权用户的所有仓库</li>
+        </a><a href="#/postV5UserRepos" class="">
+            <li class="">创建一个仓库</li>
+        </a><a href="#/getV5UsersUsernameRepos" class="">
+            <li class="">获取某个用户的公开仓库</li>
+        </a><a href="#/getV5OrgsOrgRepos" class="">
+            <li class="">获取一个组织的仓库</li>
+        </a><a href="#/postV5OrgsOrgRepos" class="">
+            <li class="">创建组织仓库</li>
+        </a><a href="#/getV5EnterprisesEnterpriseRepos" class="">
+            <li class="">获取企业的所有仓库</li>
+        </a><a href="#/postV5EnterprisesEnterpriseRepos" class="">
+            <li class="">创建企业仓库</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 搜索
+            <span class="gray">Search</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5SearchRepositories" class="">
+                <li class="">搜索仓库</li>
+            </a><a href="#/getV5SearchIssues" class="">
+            <li class="">搜索 Issues</li>
+        </a><a href="#/getV5SearchUsers" class="">
+            <li class="">搜索用户</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 用户帐号
+            <span class="gray">Users</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5UserKeys" class="">
+                <li class="">列出授权用户的所有公钥</li>
+            </a><a href="#/postV5UserKeys" class="">
+            <li class="">添加一个公钥</li>
+        </a><a href="#/getV5UserKeysId" class="">
+            <li class="">获取一个公钥</li>
+        </a><a href="#/deleteV5UserKeysId" class="">
+            <li class="">删除一个公钥</li>
+        </a><a href="#/getV5User" class="">
+            <li class="">获取授权用户的资料</li>
+        </a><a href="#/patchV5User" class="">
+            <li class="">更新授权用户的资料</li>
+        </a><a href="#/getV5UserFollowers" class="">
+            <li class="">列出授权用户的关注者</li>
+        </a><a href="#/getV5UserFollowing" class="">
+            <li class="">列出授权用户正关注的用户</li>
+        </a><a href="#/getV5UserNamespaces" class="">
+            <li class="">列出授权用户所有的 Namespace</li>
+        </a><a href="#/getV5UserNamespace" class="">
+            <li class="">获取授权用户的一个 Namespace</li>
+        </a><a href="#/getV5UserFollowingUsername" class="">
+            <li class="">检查授权用户是否关注了一个用户</li>
+        </a><a href="#/putV5UserFollowingUsername" class="">
+            <li class="">关注一个用户</li>
+        </a><a href="#/deleteV5UserFollowingUsername" class="">
+            <li class="">取消关注一个用户</li>
+        </a><a href="#/getV5UsersUsername" class="">
+            <li class="">获取一个用户</li>
+        </a><a href="#/getV5UsersUsernameFollowers" class="">
+            <li class="">列出指定用户的关注者</li>
+        </a><a href="#/getV5UsersUsernameFollowing" class="">
+            <li class="">列出指定用户正在关注的用户</li>
+        </a><a href="#/getV5UsersUsernameFollowingTargetUser" class="">
+            <li class="">检查指定用户是否关注目标用户</li>
+        </a><a href="#/getV5UsersUsernameKeys" class="">
+            <li class="">列出指定用户的所有公钥</li>
+        </a>
+        </ul>
+    </li>
+    <li>
+        <p class="tagTitle">
+            <i class="select-arrow ivu-icon ivu-icon-arrow-right-b"></i> 钩子
+            <span class="gray">Webhooks</span>
+        </p>
+        <ul class="children close"
+            style="transition: height 300ms ease 0s; display: block; height: 0px">
+            <a href="#/getV5ReposOwnerRepoHooks" class="">
+                <li class="">列出仓库的WebHooks</li>
+            </a><a href="#/postV5ReposOwnerRepoHooks" class="">
+            <li class="">创建一个仓库WebHook</li>
+        </a><a href="#/getV5ReposOwnerRepoHooksId" class="">
+            <li class="">获取仓库单个WebHook</li>
+        </a><a href="#/patchV5ReposOwnerRepoHooksId" class="">
+            <li class="">更新一个仓库WebHook</li>
+        </a><a href="#/deleteV5ReposOwnerRepoHooksId" class="">
+            <li class="">删除一个仓库WebHook</li>
+        </a><a href="#/postV5ReposOwnerRepoHooksIdTests" class="">
+            <li class="">测试WebHook是否发送成功</li>
+        </a>
+        </ul>
+    </li>
+</ul>
+</body>
+
+</html>

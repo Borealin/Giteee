@@ -1,0 +1,22 @@
+/*
+ * Created by Henry Little (linc3288235@outlook.com) on 5/12/20 6:58 PM
+ * Copyright (c) 2020 . All rights reserved.
+ * Last modified 5/12/20 6:58 PM
+ */
+
+android{
+    signingConfigs{
+        release{
+            storeFile file("./.signing/release.jks")
+            storePassword "GTffP6c@eXX"
+            keyAlias "release"
+            keyPassword "tg4BZ7bh\$Eb!"
+        }
+        debug{
+            storeFile file("./.signing/debug.jks")
+            storePassword "debug_store"
+            keyAlias "debug"
+            keyPassword "debug_key"
+        }
+    }
+}

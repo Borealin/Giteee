@@ -1,0 +1,25 @@
+[1218/103004.795:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103004.795:ERROR:exception_snapshot_win.cc(99)] thread ID 18492 not found in process
+[1218/103004.827:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103004.831:ERROR:exception_snapshot_win.cc(99)] thread ID 11672 not found in process
+[1218/103115.387:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103115.391:ERROR:exception_snapshot_win.cc(99)] thread ID 11624 not found in process
+[1218/103115.391:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103115.391:ERROR:exception_snapshot_win.cc(99)] thread ID 10012 not found in process
+[1218/103115.427:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103115.427:ERROR:exception_snapshot_win.cc(99)] thread ID 2692 not found in process
+[1218/103134.203:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103134.203:ERROR:exception_snapshot_win.cc(99)] thread ID 4448 not found in process
+[1218/103134.234:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103134.234:ERROR:exception_snapshot_win.cc(99)] thread ID 10732 not found in process
+[1218/103149.256:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103149.260:ERROR:exception_snapshot_win.cc(99)] thread ID 2652 not found in process
+[1218/103149.260:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103149.260:ERROR:exception_snapshot_win.cc(99)] thread ID 12560 not found in process
+[1218/103149.289:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103149.289:ERROR:exception_snapshot_win.cc(99)] thread ID 8788 not found in process
+[1218/103405.134:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103405.134:ERROR:exception_snapshot_win.cc(99)] thread ID 13108 not found in process
+[1218/103405.177:ERROR:process_reader_win.cc(123)] NtOpenThread: {无法访问} 过程已请求访问一对象，但未给访问权限。 (0xc0000022)
+[1218/103405.177:ERROR:exception_snapshot_win.cc(99)] thread ID 5340 not found in process
+[1218/104835.675:ERROR:directory_reader_win.cc(43)] FindFirstFile: 系统找不到指定的路径。 (0x3)
