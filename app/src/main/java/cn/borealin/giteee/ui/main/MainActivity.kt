@@ -10,7 +10,7 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
-import cn.borealin.giteee.extension.startClearActivity
+import cn.borealin.giteee.extension.finishAndStartClearActivity
 import cn.borealin.giteee.ui.auth.LoginActivity
 import cn.borealin.giteee.ui.home.HomeActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -32,9 +32,9 @@ class MainActivity : AppCompatActivity() {
             mViewModel.apply {
                 requireLogin.observe(this@MainActivity, {
                     if (it == true) {
-                        startClearActivity(LoginActivity::class.java)
+                        finishAndStartClearActivity(LoginActivity::class.java)
                     } else {
-                        startClearActivity(HomeActivity::class.java)
+                        finishAndStartClearActivity(HomeActivity::class.java)
                     }
                 })
             }

@@ -10,32 +10,29 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 
-fun <T : Context> Activity.startNewActivity(tClass: Class<T>) {
-    tClass.newInstance().let {
-        finish()
-        overridePendingTransition(0, 0)
-        startActivity(it.newIntent(this))
-        overridePendingTransition(0, 0)
-    }
+fun <T : Context> Activity.finishAndStartActivity(javaClass: Class<T>) {
+    finish()
+    overridePendingTransition(0, 0)
+    startActivity(newIntent(javaClass))
+    overridePendingTransition(0, 0)
+
 }
 
-fun Activity.startNewActivity(intent: Intent) {
+fun Activity.finishAndStartActivity(intent: Intent) {
     finish()
     overridePendingTransition(0, 0)
     startActivity(intent)
     overridePendingTransition(0, 0)
 }
 
-fun <T : Context> Activity.startClearActivity(tClass: Class<T>) {
-    tClass.newInstance().let {
-        finish()
-        overridePendingTransition(0, 0)
-        startActivity(it.newClearIntent(this))
-        overridePendingTransition(0, 0)
-    }
+fun <T : Context> Activity.finishAndStartClearActivity(javaClass: Class<T>) {
+    finish()
+    overridePendingTransition(0, 0)
+    startActivity(newClearIntent(javaClass))
+    overridePendingTransition(0, 0)
 }
 
-fun Activity.startClearActivity(intent: Intent) {
+fun Activity.finishAndStartClearActivity(intent: Intent) {
     intent.flags = intent.flags or Intent.FLAG_ACTIVITY_CLEAR_TASK
     finish()
     overridePendingTransition(0, 0)

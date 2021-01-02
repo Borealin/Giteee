@@ -19,8 +19,8 @@ import androidx.appcompat.app.AppCompatActivity
 import cn.borealin.giteee.R
 import cn.borealin.giteee.api.Status
 import cn.borealin.giteee.databinding.ActivityLoginBinding
-import cn.borealin.giteee.extension.startClearActivity
-import cn.borealin.giteee.extension.startNewActivity
+import cn.borealin.giteee.extension.finishAndStartActivity
+import cn.borealin.giteee.extension.finishAndStartClearActivity
 import cn.borealin.giteee.ui.home.HomeActivity
 import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.binding
@@ -45,11 +45,11 @@ class LoginActivity : AppCompatActivity() {
                         when (it.status) {
                             Status.SUCCESS -> {
                                 ToastUtils.show(this, getString(R.string.login_succeed))
-                                startClearActivity(HomeActivity::class.java)
+                                finishAndStartClearActivity(HomeActivity::class.java)
                             }
                             Status.ERROR -> {
                                 ToastUtils.show(this, getString(R.string.login_failed))
-                                startNewActivity(LoginActivity::class.java)
+                                finishAndStartActivity(LoginActivity::class.java)
                             }
                             else -> {
                             }
@@ -67,7 +67,7 @@ class LoginActivity : AppCompatActivity() {
                 ): Boolean {
                     request?.url?.let {
                         if (it.scheme == view?.context?.getString(R.string.scheme_name)) {
-                            startClearActivity(Intent(Intent.ACTION_VIEW, it))
+                            finishAndStartClearActivity(Intent(Intent.ACTION_VIEW, it))
                             return true
                         }
                     }
