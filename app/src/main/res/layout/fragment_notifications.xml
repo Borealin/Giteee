@@ -4,6 +4,9 @@
 
     <data>
 
+        <variable
+            name="notificationsViewModel"
+            type="cn.borealin.giteee.ui.notifications.NotificationsViewModel" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

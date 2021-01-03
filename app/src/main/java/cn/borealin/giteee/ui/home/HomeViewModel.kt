@@ -10,9 +10,18 @@ import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
 import cn.borealin.giteee.data.Repository
+import cn.borealin.giteee.ui.common.HomeMenuType
 
 class HomeViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel() {
     val token = repository.accountToken.asLiveData()
+    private val _homeMenuList = listOf(
+        HomeMenuType.ISSUE,
+        HomeMenuType.PULL_REQUEST,
+        HomeMenuType.REPOSITORY,
+        HomeMenuType.ORGANIZATION
+    )
+
+    val homeMenuList: List<HomeMenuType> = _homeMenuList
 }

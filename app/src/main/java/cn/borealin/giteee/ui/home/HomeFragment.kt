@@ -11,6 +11,7 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.FragmentHomeBinding
+import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,8 +20,15 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
 
     private val mBinding: FragmentHomeBinding by binding()
     private val mViewModel: HomeViewModel by viewModels()
+    private lateinit var homeMenuItemAdapter: HomeMenuItemAdapter
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        homeMenuItemAdapter = HomeMenuItemAdapter()
+        mBinding.apply {
+            homeViewModel = mViewModel
+            lifecycleOwner = this@HomeFragment
+            myWorkContainer.adapter = homeMenuItemAdapter
+        }
     }
 }

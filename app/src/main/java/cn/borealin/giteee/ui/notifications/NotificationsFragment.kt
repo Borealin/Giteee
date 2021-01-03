@@ -17,10 +17,14 @@ import dagger.hilt.android.AndroidEntryPoint
 @AndroidEntryPoint
 class NotificationsFragment : DataBindingFragment(R.layout.fragment_notifications) {
 
-    private val mViewModel: NotificationsViewModel by viewModels()
     private val mBinding: FragmentNotificationsBinding by binding()
+    private val mViewModel: NotificationsViewModel by viewModels()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        mBinding.apply {
+            notificationsViewModel = mViewModel
+            lifecycleOwner = this@NotificationsFragment
+        }
     }
 }
