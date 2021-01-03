@@ -4,7 +4,7 @@
  * Last modified 20-12-21 下午3:02
  */
 
-package cn.borealin.giteee.ui.main
+package cn.borealin.giteee.ui.entrance
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
@@ -14,7 +14,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 
 
-class MainViewModel @ViewModelInject constructor(
+class EntranceViewModel @ViewModelInject constructor(
     private val repository: Repository
 ) : ViewModel() {
     val requireLogin = repository.requireLogin().flowOn(Dispatchers.IO).asLiveData()

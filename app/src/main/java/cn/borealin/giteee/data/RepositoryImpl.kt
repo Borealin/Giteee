@@ -22,6 +22,8 @@ class RepositoryImpl(
     private val userPreference: UserPreference,
     private val pageConfig: PagingConfig
 ) : Repository {
+
+    // Token About
     override fun requireLogin() =
         flow {
             val (accessToken, refreshToken) = userPreference.accountToken.combine(
@@ -41,14 +43,12 @@ class RepositoryImpl(
             }
         }
 
-
     override val accountToken: Flow<String>
         get() = userPreference.accountToken
 
     override suspend fun setAccountToken(value: String) {
         userPreference.setAccountToken(value)
     }
-
 
     override val refreshToken: Flow<String>
         get() = userPreference.refreshToken

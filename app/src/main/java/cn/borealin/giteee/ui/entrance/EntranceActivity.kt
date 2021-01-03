@@ -4,7 +4,7 @@
  * Last modified 20-12-21 下午3:03
  */
 
-package cn.borealin.giteee.ui.main
+package cn.borealin.giteee.ui.entrance
 
 import android.os.Bundle
 import androidx.activity.viewModels
@@ -12,14 +12,14 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.extension.finishAndStartClearActivity
 import cn.borealin.giteee.ui.auth.LoginActivity
-import cn.borealin.giteee.ui.home.HomeActivity
+import cn.borealin.giteee.ui.home.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
 
 @AndroidEntryPoint
-class MainActivity : AppCompatActivity() {
-    private val mViewModel: MainViewModel by viewModels()
+class EntranceActivity : AppCompatActivity() {
+    private val mViewModel: EntranceViewModel by viewModels()
 
     override fun onStart() {
         super.onStart()
@@ -30,11 +30,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         lifecycleScope.launch {
             mViewModel.apply {
-                requireLogin.observe(this@MainActivity, {
+                requireLogin.observe(this@EntranceActivity, {
                     if (it == true) {
                         finishAndStartClearActivity(LoginActivity::class.java)
                     } else {
-                        finishAndStartClearActivity(HomeActivity::class.java)
+                        finishAndStartClearActivity(MainActivity::class.java)
                     }
                 })
             }

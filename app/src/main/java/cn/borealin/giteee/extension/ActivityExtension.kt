@@ -15,7 +15,6 @@ fun <T : Context> Activity.finishAndStartActivity(javaClass: Class<T>) {
     overridePendingTransition(0, 0)
     startActivity(newIntent(javaClass))
     overridePendingTransition(0, 0)
-
 }
 
 fun Activity.finishAndStartActivity(intent: Intent) {

@@ -21,7 +21,7 @@ import cn.borealin.giteee.api.Status
 import cn.borealin.giteee.databinding.ActivityLoginBinding
 import cn.borealin.giteee.extension.finishAndStartActivity
 import cn.borealin.giteee.extension.finishAndStartClearActivity
-import cn.borealin.giteee.ui.home.HomeActivity
+import cn.borealin.giteee.ui.home.MainActivity
 import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.binding
 import dagger.hilt.android.AndroidEntryPoint
@@ -45,7 +45,7 @@ class LoginActivity : AppCompatActivity() {
                         when (it.status) {
                             Status.SUCCESS -> {
                                 ToastUtils.show(this, getString(R.string.login_succeed))
-                                finishAndStartClearActivity(HomeActivity::class.java)
+                                finishAndStartClearActivity(MainActivity::class.java)
                             }
                             Status.ERROR -> {
                                 ToastUtils.show(this, getString(R.string.login_failed))
