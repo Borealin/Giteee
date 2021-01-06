@@ -34,12 +34,14 @@ class ProfileViewModel @ViewModelInject constructor(
 
     val profile: LiveData<ProfileDetail> = _profile
 
-    fun getCurrentProfile() = liveData {
-        profileRepository.getCurrentProfile().collectLatest { result ->
+    fun getUserProfile(profileType: ProfileType? = null) = liveData {
+        val checkProfileType =
+            profileType ?: ProfileType.User(profileRepository.checkLocalUsername())
+        profileRepository.getProfile(checkProfileType).collectLatest { result ->
             result.doSuccess {
                 _profile.postValue(it.toProfileDetail())
                 _profileMenuList.postValue(
-                    it.toHomeMenuList()
+                    it.toHomeMenuList(checkProfileType)
                 )
                 emit(Resource.Success(it))
             }
@@ -49,27 +51,21 @@ class ProfileViewModel @ViewModelInject constructor(
         }
     }
 
+
+    suspend fun getPublicEvents(username: String? = null): Flow<PagingData<UserEventType>> {
+        val checkUsername = username ?: profileRepository.checkLocalUsername()
+        return activityRepository.getPublicEvent(checkUsername)
+            .cachedIn(viewModelScope)
+    }
+
     suspend fun getEvents(username: String? = null): Flow<PagingData<UserEventType>> {
         val checkUsername = username ?: profileRepository.checkLocalUsername()
         return activityRepository.getEvent(checkUsername)
             .cachedIn(viewModelScope)
     }
 
-    suspend fun getFollower(username: String? = null): Flow<PagingData<ProfileListItemData>> {
-        val checkUsername = username ?: profileRepository.checkLocalUsername()
-        return profileRepository.getFollower(checkUsername)
-            .cachedIn(viewModelScope)
-    }
-
-    suspend fun getFollowing(username: String? = null): Flow<PagingData<ProfileListItemData>> {
-        val checkUsername = username ?: profileRepository.checkLocalUsername()
-        return profileRepository.getFollowing(checkUsername)
-            .cachedIn(viewModelScope)
-    }
-
-    suspend fun getOrganization(username: String? = null): Flow<PagingData<ProfileListItemData>> {
-        val checkUsername = username ?: profileRepository.checkLocalUsername()
-        return profileRepository.getOrganization(checkUsername)
+    fun getList(profileListType: ProfileListType): Flow<PagingData<ProfileListItemData>> {
+        return profileRepository.getList(profileListType)
             .cachedIn(viewModelScope)
     }
 

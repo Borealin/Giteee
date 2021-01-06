@@ -28,9 +28,6 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
 
     private val itemOnClickListener: HomeMenuTypeCallback = {
         when (it) {
-            is HomeMenuType.Issue -> TODO()
-            is HomeMenuType.PullRequest -> TODO()
-            is HomeMenuType.Repository -> TODO()
             is HomeMenuType.Organization -> {
                 mViewModel.localName.observe(viewLifecycleOwner, { name ->
                     startActivity(
@@ -41,9 +38,9 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
                     )
                 })
             }
-            is HomeMenuType.Gists -> TODO()
-            is HomeMenuType.Star -> TODO()
-            is HomeMenuType.Watch -> TODO()
+            else -> {
+
+            }
         }
     }
 

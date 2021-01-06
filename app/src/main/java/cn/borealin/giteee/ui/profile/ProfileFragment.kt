@@ -11,28 +11,23 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.os.bundleOf
+import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.commit
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.R
-import cn.borealin.giteee.api.doFailure
-import cn.borealin.giteee.api.doSuccess
 import cn.borealin.giteee.databinding.FragmentProfileBinding
 import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.common.UserEventItemAdapter
-import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
-import java.io.Serializable
 
-enum class ProfileType : Serializable {
-    PERSON,
-    ORGANIZATION
-}
 
 @AndroidEntryPoint
 class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
@@ -40,26 +35,30 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
     private val mViewModel: ProfileViewModel by viewModels()
     private lateinit var homeMenuItemAdapter: HomeMenuItemAdapter
     private lateinit var userEventItemAdapter: UserEventItemAdapter
-    private var userLoginName: String? = null
+    private var profileType: ProfileType? = null
 
     private val itemOnClickListener: HomeMenuTypeCallback = {
         when (it) {
-            is HomeMenuType.Issue -> TODO()
-            is HomeMenuType.PullRequest -> TODO()
-            is HomeMenuType.Repository -> TODO()
             is HomeMenuType.Organization -> {
-                userLoginName?.let { name ->
+                profileType?.let { profile ->
                     startActivity(
                         ProfileListActivity.newIntent(
                             requireContext(),
-                            ProfileListType.Organization(name)
+                            ProfileListType.Organization(profile.username)
                         )
                     )
                 }
             }
-            is HomeMenuType.Gists -> TODO()
-            is HomeMenuType.Star -> TODO()
-            is HomeMenuType.Watch -> TODO()
+            is HomeMenuType.Member -> {
+                profileType?.let { profile ->
+                    startActivity(
+                        ProfileListActivity.newIntent(
+                            requireContext(),
+                            ProfileListType.Member(profile.username)
+                        )
+                    )
+                }
+            }
         }
     }
 
@@ -67,7 +66,11 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
     private fun getEvent(username: String? = null) {
         getEventJob?.cancel()
         getEventJob = lifecycleScope.launch {
-            mViewModel.getEvents(username).collect {
+            if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
+                mViewModel.getPublicEvents(username)
+            } else {
+                mViewModel.getEvents(username)
+            }.collect {
                 userEventItemAdapter.submitData(it)
             }
         }
@@ -77,30 +80,36 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
         super.onViewCreated(view, savedInstanceState)
         homeMenuItemAdapter = HomeMenuItemAdapter(itemOnClickListener)
         userEventItemAdapter = UserEventItemAdapter()
-        val argName = arguments?.getString(KEY_USERNAME)
+        val argName = arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE)
         if (argName == null) {
-            mViewModel.getCurrentProfile().observe(viewLifecycleOwner, {
-                it.doSuccess { data ->
-                    userLoginName = data.loginName
-                }
-                it.doFailure {
-                    ToastUtils.show(requireContext(), R.string.get_profile_failed)
-                }
+            mViewModel.localName.observe(viewLifecycleOwner, {
+                profileType = ProfileType.User(it)
+                getEvent(it)
             })
         } else {
-            userLoginName = argName
+            profileType = argName
         }
         mBinding.apply {
             profileViewModel = mViewModel
             lifecycleOwner = this@ProfileFragment
+            if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
+                toolbarProfile.menu.removeItem(R.id.action_settings)
+            }
             profileRefresh.setOnRefreshListener {
-                mViewModel.getCurrentProfile().observe(viewLifecycleOwner, {
+                mViewModel.getUserProfile(profileType).observe(viewLifecycleOwner, {
                     profileRefresh.isRefreshing = false
                 })
-                getEvent(userLoginName)
+                profileType?.let {
+                    when (it) {
+                        is ProfileType.User -> getEvent(profileType?.username)
+                        is ProfileType.Organization -> {
+
+                        }
+                    }
+                }
             }
             followerContainer.setOnClickListener {
-                userLoginName?.let {
+                profileType?.username?.let {
                     startActivity(
                         ProfileListActivity.newIntent(
                             requireContext(),
@@ -110,7 +119,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                 }
             }
             followingContainer.setOnClickListener {
-                userLoginName?.let {
+                profileType?.username?.let {
                     startActivity(
                         ProfileListActivity.newIntent(
                             requireContext(),
@@ -121,7 +130,17 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
             }
             profileUtilContainer.adapter = homeMenuItemAdapter
             profileEventContainer.adapter = userEventItemAdapter
-            getEvent(userLoginName)
+            mViewModel.getUserProfile(profileType).observe(viewLifecycleOwner, {
+                profileRefresh.isRefreshing = false
+                profileType?.let {
+                    when (it) {
+                        is ProfileType.User -> getEvent(profileType?.username)
+                        is ProfileType.Organization -> {
+
+                        }
+                    }
+                }
+            })
         }
     }
 
@@ -135,11 +154,16 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
 
     companion object {
         private const val KEY_PROFILE_TYPE = "key_profile_type"
-        private const val KEY_USERNAME = "key_username"
-        fun newInstance(profileType: ProfileType, username: String) = ProfileFragment().apply {
-            arguments = Bundle().apply {
-                putSerializable(KEY_PROFILE_TYPE, profileType)
-                putString(KEY_USERNAME, username)
+
+        fun addFragment(
+            manager: FragmentManager,
+            profileType: ProfileType,
+            fragmentContainerId: Int
+        ) {
+
+            manager.commit {
+                val bundle = bundleOf(KEY_PROFILE_TYPE to profileType)
+                replace(fragmentContainerId, ProfileFragment::class.java, bundle)
             }
         }
     }

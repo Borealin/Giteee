@@ -21,6 +21,7 @@ sealed class HomeMenuType(val title: String, val count: Int) : Serializable {
     class Gists(count: Int) : HomeMenuType("Gists", count)
     class Star(count: Int) : HomeMenuType("Starred", count)
     class Watch(count: Int) : HomeMenuType("Watched", count)
+    class Member(count: Int) : HomeMenuType("Members", count)
 
     @DrawableRes
     fun toDrawableIconId(): Int {
@@ -32,6 +33,7 @@ sealed class HomeMenuType(val title: String, val count: Int) : Serializable {
             is Star -> R.drawable.ic_star_yellow_24dp
             is Watch -> R.drawable.ic_watch_teal_24dp
             is Gists -> R.drawable.ic_gists_blue_24dp
+            is Member -> R.drawable.ic_organization_orange_24dp
         }
     }
 

@@ -18,16 +18,30 @@ class EventPagingSource(
     private val activityApi: ActivityApi,
     private val userPreference: UserPreference,
     private val username: String,
-    private val received: Boolean
+    private val received: Boolean,
+    private val public: Boolean
 ) : PagingSource<Int, UserEventType>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserEventType> {
         val token = userPreference.accountToken.first()
         val position = params.key ?: 1
         return try {
             val event = if (received) {
-                activityApi.getUserReceivedEvent(username, token, position, params.loadSize)
+                if (public) {
+                    activityApi.getUserReceivedPublicEvent(
+                        username,
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                } else {
+                    activityApi.getUserReceivedEvent(username, token, position, params.loadSize)
+                }
             } else {
-                activityApi.getUserEvent(username, token, position, params.loadSize)
+                if (public) {
+                    activityApi.getUserPublicEvent(username, token, position, params.loadSize)
+                } else {
+                    activityApi.getUserEvent(username, token, position, params.loadSize)
+                }
             }
             val data = event.map {
                 it.toUserActionType()

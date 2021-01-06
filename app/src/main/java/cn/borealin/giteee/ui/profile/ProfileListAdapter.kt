@@ -7,17 +7,19 @@
 package cn.borealin.giteee.ui.profile
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.ProfileListItemBinding
 import cn.borealin.giteee.extension.doWithTry
+import cn.borealin.giteee.model.common.ProfileListItemCallback
 import cn.borealin.giteee.model.common.ProfileListItemData
 
-class ProfileListAdapter :
+class ProfileListAdapter(private val onClickListener: ProfileListItemCallback) :
     PagingDataAdapter<ProfileListItemData, ProfileListItemHolder>(ProfileListItemData.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ProfileListItemHolder {
-        return ProfileListItemHolder.from(parent)
+        return ProfileListItemHolder.from(parent, onClickListener)
     }
 
     override fun onBindViewHolder(holder: ProfileListItemHolder, position: Int) {
@@ -31,21 +33,30 @@ class ProfileListAdapter :
 
 }
 
-class ProfileListItemHolder(private val binding: ProfileListItemBinding) :
+class ProfileListItemHolder(
+    private val binding: ProfileListItemBinding,
+    private val onClickListener: ProfileListItemCallback
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(type: ProfileListItemData) {
         binding.apply {
             item = type
+            clickListener = View.OnClickListener {
+                onClickListener(type)
+            }
             executePendingBindings()
         }
     }
 
     companion object {
-        fun from(parent: ViewGroup): ProfileListItemHolder {
+        fun from(
+            parent: ViewGroup,
+            onClickListener: ProfileListItemCallback
+        ): ProfileListItemHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = ProfileListItemBinding.inflate(layoutInflater, parent, false)
-            return ProfileListItemHolder(binding)
+            return ProfileListItemHolder(binding, onClickListener)
         }
     }
 }

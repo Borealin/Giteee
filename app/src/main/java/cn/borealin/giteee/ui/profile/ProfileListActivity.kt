@@ -16,6 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityProfileListBinding
+import cn.borealin.giteee.model.common.ProfileListItemCallback
 import com.hi.dhl.jdatabinding.binding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -36,11 +37,7 @@ class ProfileListActivity : AppCompatActivity() {
     private fun getList() {
         getListJob?.cancel()
         getListJob = lifecycleScope.launch {
-            when (profileListType) {
-                is ProfileListType.Follower -> mViewModel.getFollower(profileListType.username)
-                is ProfileListType.Following -> mViewModel.getFollowing(profileListType.username)
-                is ProfileListType.Organization -> mViewModel.getOrganization(profileListType.username)
-            }.onCompletion {
+            mViewModel.getList(profileListType).onCompletion {
                 mBinding.eventRefresh.isRefreshing = false
             }.collect {
                 profileListAdapter.submitData(it)
@@ -48,12 +45,33 @@ class ProfileListActivity : AppCompatActivity() {
         }
     }
 
+    private val onClickListener: ProfileListItemCallback = { profileListItemData ->
+        when (profileListType) {
+            is ProfileListType.Follower, is ProfileListType.Following, is ProfileListType.Member -> {
+                startActivity(
+                    ProfileActivity.newIntent(
+                        this@ProfileListActivity,
+                        ProfileType.User(profileListItemData.login)
+                    )
+                )
+            }
+            is ProfileListType.Organization -> {
+                startActivity(
+                    ProfileActivity.newIntent(
+                        this@ProfileListActivity,
+                        ProfileType.Organization(profileListItemData.login)
+                    )
+                )
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        profileListType = requireNotNull(intent.getParcelableExtra(PROFILE_LIST_TYPE_ARG)) {
+        profileListType = requireNotNull(intent.getParcelableExtra(KEY_PROFILE_LIST_TYPE)) {
             "params is not null"
         }
-        profileListAdapter = ProfileListAdapter()
+        profileListAdapter = ProfileListAdapter(onClickListener)
         mBinding.apply {
             profileViewModel = mViewModel
             lifecycleOwner = this@ProfileListActivity
@@ -65,10 +83,10 @@ class ProfileListActivity : AppCompatActivity() {
     }
 
     companion object {
-        private const val PROFILE_LIST_TYPE_ARG = "profile_list_type_arg"
+        private const val KEY_PROFILE_LIST_TYPE = "key_profile_list_type"
         fun newIntent(context: Context, profileListType: ProfileListType): Intent {
             return Intent(context, ProfileListActivity::class.java).apply {
-                putExtra(PROFILE_LIST_TYPE_ARG, profileListType)
+                putExtra(KEY_PROFILE_LIST_TYPE, profileListType)
             }
         }
     }
@@ -99,6 +117,13 @@ sealed class ProfileListType : Parcelable {
     data class Organization(override val username: String) : ProfileListType() {
         override fun toTitleStringRes(): Int {
             return R.string.title_organization_list
+        }
+    }
+
+    @Parcelize
+    data class Member(override val username: String) : ProfileListType() {
+        override fun toTitleStringRes(): Int {
+            return R.string.title_member_list
         }
     }
 }

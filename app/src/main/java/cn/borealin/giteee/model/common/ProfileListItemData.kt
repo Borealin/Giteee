@@ -10,6 +10,8 @@ import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import kotlinx.parcelize.Parcelize
 
+typealias ProfileListItemCallback = (ProfileListItemData) -> Unit
+
 @Parcelize
 data class ProfileListItemData(
     val name: String,

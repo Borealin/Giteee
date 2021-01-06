@@ -6,6 +6,7 @@
 
 package cn.borealin.giteee.api.interfaces
 
+import cn.borealin.giteee.model.organization.RawOrgsData
 import cn.borealin.giteee.model.organization.RawUserOrgsData
 import cn.borealin.giteee.model.users.RawFollowData
 import cn.borealin.giteee.model.users.RawUserData
@@ -19,11 +20,25 @@ interface ProfileApi {
         @Query("access_token") accessToken: String
     ): RawUserData
 
-    @GET("user/{username}")
+    @GET("users/{username}")
     suspend fun getUserProfile(
         @Path("username") username: String,
         @Query("access_token") accessToken: String
     ): RawUserData
+
+    @GET("orgs/{org}")
+    suspend fun getOrganization(
+        @Path("org") org: String,
+        @Query("access_token") accessToken: String
+    ): RawOrgsData
+
+    @GET("orgs/{org}/members")
+    suspend fun getOrganizationMember(
+        @Path("org") org: String,
+        @Query("access_token") accessToken: String,
+        @Query("page") page: Int?,
+        @Query("per_page") pageSize: Int?
+    ): List<RawUserOrgsData>
 
     @GET("users/{username}/orgs")
     suspend fun getUserOrganizations(
@@ -31,7 +46,7 @@ interface ProfileApi {
         @Query("access_token") accessToken: String,
         @Query("page") page: Int?,
         @Query("per_page") pageSize: Int?
-    ): List<RawUserOrgsData>
+    ): List<RawFollowData>
 
     @GET("users/{username}/followers")
     suspend fun getUserFollower(

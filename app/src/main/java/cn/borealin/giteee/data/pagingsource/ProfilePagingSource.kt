@@ -43,6 +43,12 @@ class ProfilePagingSource(
                     position,
                     params.loadSize
                 )
+                is ProfileListType.Member -> profileApi.getOrganizationMember(
+                    listType.username,
+                    token,
+                    position,
+                    params.loadSize
+                )
             }
             val data = profileList.map {
                 it.toProfileListItemData()

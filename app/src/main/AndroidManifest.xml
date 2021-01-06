@@ -15,7 +15,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Giteee">
-        <activity android:name=".ui.profile.ProfileActivity"></activity>
+        <activity
+            android:name=".ui.profile.ProfileActivity"
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.profile.ProfileListActivity"
             android:theme="@style/NoActionBar" />

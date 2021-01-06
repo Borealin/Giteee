@@ -8,6 +8,8 @@ package cn.borealin.giteee.model.users
 
 import android.os.Parcelable
 import cn.borealin.giteee.model.common.HomeMenuType
+import cn.borealin.giteee.model.organization.RawOrgsData
+import cn.borealin.giteee.ui.profile.ProfileType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
@@ -24,7 +26,8 @@ data class UserData(
     val publicOrgs: Int,
     val publicGists: Int,
     val stared: Int,
-    val watched: Int
+    val watched: Int,
+    val member: Int
 ) : Parcelable {
     fun toProfileDetail(): ProfileDetail {
         return ProfileDetail(
@@ -39,14 +42,20 @@ data class UserData(
         )
     }
 
-    fun toHomeMenuList(): List<HomeMenuType> {
-        return listOf(
-            HomeMenuType.Repository(publicRepos),
-            HomeMenuType.Organization(publicOrgs),
-            HomeMenuType.Gists(publicGists),
-            HomeMenuType.Star(stared),
-            HomeMenuType.Watch(watched)
-        )
+    fun toHomeMenuList(profileType: ProfileType): List<HomeMenuType> {
+        return when (profileType) {
+            is ProfileType.User -> listOf(
+                HomeMenuType.Repository(publicRepos),
+                HomeMenuType.Organization(publicOrgs),
+                HomeMenuType.Gists(publicGists),
+                HomeMenuType.Star(stared),
+                HomeMenuType.Watch(watched)
+            )
+            is ProfileType.Organization -> listOf(
+                HomeMenuType.Repository(publicRepos),
+                HomeMenuType.Member(member)
+            )
+        }
     }
 
     companion object {
@@ -64,7 +73,27 @@ data class UserData(
                 publicOrgs = orgsCount,
                 publicGists = userData.publicGists,
                 stared = userData.stared,
-                watched = userData.watched
+                watched = userData.watched,
+                member = -1
+            )
+        }
+
+        fun fromRawOrgsData(userData: RawOrgsData): UserData {
+            return UserData(
+                name = userData.name,
+                avatar = userData.avatarUrl,
+                loginName = userData.login,
+                biography = userData.description,
+                blog = null,
+                email = userData.email,
+                followerCount = userData.followCount,
+                followingCount = null,
+                publicRepos = userData.publicRepos,
+                publicOrgs = -1,
+                publicGists = -1,
+                stared = -1,
+                watched = -1,
+                member = userData.members
             )
         }
 
@@ -82,7 +111,8 @@ data class UserData(
                 publicOrgs = -1,
                 publicGists = -1,
                 stared = -1,
-                watched = -1
+                watched = -1,
+                member = -1
             )
         }
     }

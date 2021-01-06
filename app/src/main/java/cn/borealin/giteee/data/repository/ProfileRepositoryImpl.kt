@@ -17,11 +17,9 @@ import cn.borealin.giteee.data.pagingsource.ProfilePagingSource
 import cn.borealin.giteee.model.common.ProfileListItemData
 import cn.borealin.giteee.model.users.UserData
 import cn.borealin.giteee.ui.profile.ProfileListType
+import cn.borealin.giteee.ui.profile.ProfileType
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.first
-import kotlinx.coroutines.flow.flow
-import kotlinx.coroutines.flow.flowOn
+import kotlinx.coroutines.flow.*
 
 class ProfileRepositoryImpl(
     private val profileApi: ProfileApi,
@@ -30,9 +28,6 @@ class ProfileRepositoryImpl(
 ) : ProfileRepository {
     override fun getCurrentProfile() = flow {
         val token = userPreference.accountToken.first()
-        val accountName = userPreference.accountName.first()
-        val accountLoginName = userPreference.accountLoginName.first()
-        emit(Resource.Success(UserData.fromAccountName(accountName, accountLoginName)))
         try {
             val userProfile = profileApi.getCurrentProfile(token)
             val userOrganization =
@@ -45,68 +40,53 @@ class ProfileRepositoryImpl(
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun getProfile(username: String) = flow {
+    override fun getProfile(profileType: ProfileType) = flow {
         val token = userPreference.accountToken.first()
-        emit(
-            Resource.Success(
-                UserData.fromAccountName(
-                    UserPreferenceContract.DEFAULT_ACCOUNT_NAME,
-                    UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME
-                )
-            )
-        )
         try {
-            val userProfile = profileApi.getUserProfile(username, token)
-            val userOrganization = profileApi.getUserOrganizations(username, token, null, null)
-            emit(Resource.Success(UserData.fromRawUserData(userProfile, userOrganization.size)))
+            when (profileType) {
+                is ProfileType.User -> {
+                    val userProfile = profileApi.getUserProfile(profileType.username, token)
+                    val userOrganization =
+                        profileApi.getUserOrganizations(profileType.username, token, null, null)
+                    emit(
+                        Resource.Success(
+                            UserData.fromRawUserData(
+                                userProfile,
+                                userOrganization.size
+                            )
+                        )
+                    )
+                }
+                is ProfileType.Organization -> {
+                    val userProfile = profileApi.getOrganization(profileType.username, token)
+                    emit(Resource.Success(UserData.fromRawOrgsData(userProfile)))
+                }
+            }
+
         } catch (e: Exception) {
             emit(Resource.Failure(e.cause))
         }
     }.flowOn(Dispatchers.IO)
 
-    override fun getFollower(username: String): Flow<PagingData<ProfileListItemData>> {
+    override fun getList(profileListType: ProfileListType): Flow<PagingData<ProfileListItemData>> {
         return Pager(
             config = pageConfig,
             pagingSourceFactory = {
                 ProfilePagingSource(
                     profileApi,
                     userPreference,
-                    ProfileListType.Follower(username)
-                )
-            }
-        ).flow
-    }
-
-    override fun getFollowing(username: String): Flow<PagingData<ProfileListItemData>> {
-        return Pager(
-            config = pageConfig,
-            pagingSourceFactory = {
-                ProfilePagingSource(
-                    profileApi,
-                    userPreference,
-                    ProfileListType.Following(username)
-                )
-            }
-        ).flow
-    }
-
-    override fun getOrganization(username: String): Flow<PagingData<ProfileListItemData>> {
-        return Pager(
-            config = pageConfig,
-            pagingSourceFactory = {
-                ProfilePagingSource(
-                    profileApi,
-                    userPreference,
-                    ProfileListType.Organization(username)
+                    profileListType
                 )
             }
         ).flow
     }
 
     override suspend fun checkLocalUsername(): String {
-        val localUsername = userPreference.accountLoginName.first()
-        if (localUsername == UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME) {
-            getCurrentProfile().first()
+        val localUserLoginName = userPreference.accountLoginName.first()
+        if (localUserLoginName == UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME) {
+            getCurrentProfile().collectLatest {
+
+            }
         }
         return userPreference.accountLoginName.first()
     }

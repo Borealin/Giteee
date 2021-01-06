@@ -28,7 +28,23 @@ class ActivityRepositoryImpl(
                     activityApi,
                     userPreference,
                     username,
-                    false
+                    received = false,
+                    public = false
+                )
+            }
+        ).flow
+    }
+
+    override fun getPublicEvent(username: String): Flow<PagingData<UserEventType>> {
+        return Pager(
+            config = pageConfig,
+            pagingSourceFactory = {
+                EventPagingSource(
+                    activityApi,
+                    userPreference,
+                    username,
+                    received = false,
+                    public = true
                 )
             }
         ).flow
@@ -37,7 +53,15 @@ class ActivityRepositoryImpl(
     override fun getReceivedEvent(username: String): Flow<PagingData<UserEventType>> {
         return Pager(
             config = pageConfig,
-            pagingSourceFactory = { EventPagingSource(activityApi, userPreference, username, true) }
+            pagingSourceFactory = {
+                EventPagingSource(
+                    activityApi,
+                    userPreference,
+                    username,
+                    received = true,
+                    public = false
+                )
+            }
         ).flow
     }
 }

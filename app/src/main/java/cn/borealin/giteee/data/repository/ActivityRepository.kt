@@ -12,5 +12,6 @@ import kotlinx.coroutines.flow.Flow
 
 interface ActivityRepository {
     fun getEvent(username: String): Flow<PagingData<UserEventType>>
+    fun getPublicEvent(username: String): Flow<PagingData<UserEventType>>
     fun getReceivedEvent(username: String): Flow<PagingData<UserEventType>>
 }

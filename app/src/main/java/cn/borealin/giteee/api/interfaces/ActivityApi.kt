@@ -20,8 +20,24 @@ interface ActivityApi {
         @Query("per_page") pageSize: Int
     ): List<UserEventData>
 
+    @GET("users/{username}/events/public")
+    suspend fun getUserPublicEvent(
+        @Path("username") username: String,
+        @Query("access_token") access_token: String,
+        @Query("page") page: Int,
+        @Query("per_page") pageSize: Int
+    ): List<UserEventData>
+
     @GET("users/{username}/received_events")
     suspend fun getUserReceivedEvent(
+        @Path("username") username: String,
+        @Query("access_token") access_token: String,
+        @Query("page") page: Int,
+        @Query("per_page") pageSize: Int
+    ): List<UserEventData>
+
+    @GET("users/{username}/received_events/public")
+    suspend fun getUserReceivedPublicEvent(
         @Path("username") username: String,
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
