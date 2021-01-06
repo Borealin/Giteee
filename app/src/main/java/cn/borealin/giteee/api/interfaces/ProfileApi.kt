@@ -7,6 +7,7 @@
 package cn.borealin.giteee.api.interfaces
 
 import cn.borealin.giteee.model.organization.RawUserOrgsData
+import cn.borealin.giteee.model.users.RawFollowData
 import cn.borealin.giteee.model.users.RawUserData
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,18 +25,28 @@ interface ProfileApi {
         @Query("access_token") accessToken: String
     ): RawUserData
 
-    @GET("user/orgs")
-    suspend fun getCurrentOrganizations(
-        @Query("access_token") accessToken: String,
-        @Query("page") page: Int?,
-        @Query("per_page") pageSize: Int?
-    ): List<RawUserOrgsData>
-
-    @GET("user/{username}/orgs")
+    @GET("users/{username}/orgs")
     suspend fun getUserOrganizations(
         @Path("username") username: String,
         @Query("access_token") accessToken: String,
         @Query("page") page: Int?,
         @Query("per_page") pageSize: Int?
     ): List<RawUserOrgsData>
+
+    @GET("users/{username}/followers")
+    suspend fun getUserFollower(
+        @Path("username") username: String,
+        @Query("access_token") accessToken: String,
+        @Query("page") page: Int?,
+        @Query("per_page") pageSize: Int?
+    ): List<RawFollowData>
+
+    @GET("users/{username}/following")
+    suspend fun getUserFollowing(
+        @Path("username") username: String,
+        @Query("access_token") accessToken: String,
+        @Query("page") page: Int?,
+        @Query("per_page") pageSize: Int?
+    ): List<RawFollowData>
+
 }

@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="cn.borealin.giteee.ui.common.HomeMenuType" />
+            type="cn.borealin.giteee.model.common.HomeMenuType" />
 
         <variable
             name="clickListener"

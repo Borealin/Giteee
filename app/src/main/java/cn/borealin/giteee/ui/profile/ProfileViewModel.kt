@@ -13,16 +13,16 @@ import androidx.paging.cachedIn
 import cn.borealin.giteee.api.Resource
 import cn.borealin.giteee.api.doFailure
 import cn.borealin.giteee.api.doSuccess
-import cn.borealin.giteee.data.UserPreferenceContract
 import cn.borealin.giteee.data.repository.ActivityRepository
 import cn.borealin.giteee.data.repository.LoginRepository
 import cn.borealin.giteee.data.repository.ProfileRepository
+import cn.borealin.giteee.model.common.HomeMenuType
+import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.common.UserEventType
 import cn.borealin.giteee.model.users.ProfileDetail
-import cn.borealin.giteee.ui.common.HomeMenuType
-import cn.borealin.giteee.ui.common.UserEventType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
-import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
 
 class ProfileViewModel @ViewModelInject constructor(
     private val loginRepository: LoginRepository,
@@ -50,14 +50,32 @@ class ProfileViewModel @ViewModelInject constructor(
     }
 
     suspend fun getEvents(username: String? = null): Flow<PagingData<UserEventType>> {
-        val localUsername = loginRepository.accountLoginName.first()
-        if (localUsername == UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME) {
-            profileRepository.getCurrentProfile().first()
-        }
-        val checkUsername = username ?: loginRepository.accountName.first()
+        val checkUsername = username ?: profileRepository.checkLocalUsername()
         return activityRepository.getEvent(checkUsername)
             .cachedIn(viewModelScope)
     }
+
+    suspend fun getFollower(username: String? = null): Flow<PagingData<ProfileListItemData>> {
+        val checkUsername = username ?: profileRepository.checkLocalUsername()
+        return profileRepository.getFollower(checkUsername)
+            .cachedIn(viewModelScope)
+    }
+
+    suspend fun getFollowing(username: String? = null): Flow<PagingData<ProfileListItemData>> {
+        val checkUsername = username ?: profileRepository.checkLocalUsername()
+        return profileRepository.getFollowing(checkUsername)
+            .cachedIn(viewModelScope)
+    }
+
+    suspend fun getOrganization(username: String? = null): Flow<PagingData<ProfileListItemData>> {
+        val checkUsername = username ?: profileRepository.checkLocalUsername()
+        return profileRepository.getOrganization(checkUsername)
+            .cachedIn(viewModelScope)
+    }
+
+    val localName = flow {
+        emit(profileRepository.checkLocalUsername())
+    }.asLiveData()
 
     private val _profileMenuList = MutableLiveData<List<HomeMenuType>>().apply {
         postValue(

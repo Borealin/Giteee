@@ -1,15 +1,17 @@
 /*
- * Created by Borealin (308704199deniel@gmail.com) on 2021/1/4 上午5:07
+ * Created by Borealin (308704199deniel@gmail.com) on 2021/1/7 上午12:09
  * Copyright (c) 2021 . All rights reserved.
- * Last modified 2021/1/4 上午5:07
+ * Last modified 2021/1/6 下午10:20
  */
 
-package cn.borealin.giteee.ui.common
+package cn.borealin.giteee.model.common
 
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil
 import cn.borealin.giteee.R
 import java.io.Serializable
+
+typealias HomeMenuTypeCallback = (HomeMenuType) -> Unit
 
 sealed class HomeMenuType(val title: String, val count: Int) : Serializable {
     class Issue(count: Int) : HomeMenuType("Issues", count)

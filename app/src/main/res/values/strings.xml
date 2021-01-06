@@ -10,6 +10,9 @@
     <string name="title_home">Home</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_profile">Profile</string>
+    <string name="title_follower_list">Follower</string>
+    <string name="title_following_list">Following</string>
+    <string name="title_organization_list">Organizations</string>
 
     <string name="home_my_work_title">My Work</string>
     <string name="default_item_title">Default Item Title</string>
@@ -21,4 +24,5 @@
     <string name="action_settings">Settings</string>
 
     <string name="refresh_successfully">Refresh successfully</string>
+    <string name="get_profile_failed">Get profile failed</string>
 </resources>

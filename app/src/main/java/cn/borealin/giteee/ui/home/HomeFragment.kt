@@ -11,7 +11,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.FragmentHomeBinding
+import cn.borealin.giteee.model.common.HomeMenuType
+import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
+import cn.borealin.giteee.ui.profile.ProfileListActivity
+import cn.borealin.giteee.ui.profile.ProfileListType
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -22,9 +26,30 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
     private val mViewModel: HomeViewModel by viewModels()
     private lateinit var homeMenuItemAdapter: HomeMenuItemAdapter
 
+    private val itemOnClickListener: HomeMenuTypeCallback = {
+        when (it) {
+            is HomeMenuType.Issue -> TODO()
+            is HomeMenuType.PullRequest -> TODO()
+            is HomeMenuType.Repository -> TODO()
+            is HomeMenuType.Organization -> {
+                mViewModel.localName.observe(viewLifecycleOwner, { name ->
+                    startActivity(
+                        ProfileListActivity.newIntent(
+                            requireContext(),
+                            ProfileListType.Organization(name)
+                        )
+                    )
+                })
+            }
+            is HomeMenuType.Gists -> TODO()
+            is HomeMenuType.Star -> TODO()
+            is HomeMenuType.Watch -> TODO()
+        }
+    }
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        homeMenuItemAdapter = HomeMenuItemAdapter()
+        homeMenuItemAdapter = HomeMenuItemAdapter(itemOnClickListener)
         mBinding.apply {
             homeViewModel = mViewModel
             lifecycleOwner = this@HomeFragment

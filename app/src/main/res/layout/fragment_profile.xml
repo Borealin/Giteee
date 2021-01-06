@@ -127,41 +127,54 @@
                             android:src="@drawable/ic_follow_gray_24dp"
                             android:visibility="@{(profileViewModel.profile.followerCount==null&amp;&amp;profileViewModel.profile.followingCount==null)?View.GONE:View.VISIBLE}" />
 
-                        <TextView
-                            android:id="@+id/profile_follower_count"
+                        <LinearLayout
+                            android:id="@+id/follower_container"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="4dp"
-                            android:text="@{Integer.toString(profileViewModel.profile.followerCount)}"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:bindVisibleWithNullable="@{profileViewModel.profile.followerCount}" />
+                            android:gravity="center_vertical"
+                            app:bindVisibleWithNullable="@{profileViewModel.profile.followerCount}">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="@string/profile_follower_title"
-                            app:bindVisibleWithNullable="@{profileViewModel.profile.followerCount}" />
+                            <TextView
+                                android:id="@+id/profile_follower_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(profileViewModel.profile.followerCount)}"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
 
-                        <TextView
-                            android:id="@+id/profile_following_count"
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@string/profile_follower_title" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/following_container"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="12dp"
-                            android:text="@{Integer.toString(profileViewModel.profile.followingCount)}"
-                            android:textColor="@color/black"
-                            android:textSize="16sp"
-                            android:textStyle="bold"
-                            app:bindVisibleWithNullable="@{profileViewModel.profile.followingCount}" />
+                            android:gravity="center_vertical"
+                            app:bindVisibleWithNullable="@{profileViewModel.profile.followingCount}">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="6dp"
-                            android:text="@string/profile_following_title"
-                            app:bindVisibleWithNullable="@{profileViewModel.profile.followingCount}" />
+                            <TextView
+                                android:id="@+id/profile_following_count"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@{Integer.toString(profileViewModel.profile.followingCount)}"
+                                android:textColor="@color/black"
+                                android:textSize="16sp"
+                                android:textStyle="bold" />
+
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="6dp"
+                                android:text="@string/profile_following_title" />
+                        </LinearLayout>
                     </LinearLayout>
                 </androidx.constraintlayout.widget.ConstraintLayout>
 

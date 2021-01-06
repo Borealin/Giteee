@@ -1,6 +1,8 @@
 package cn.borealin.giteee.model.organization
 
 import android.os.Parcelable
+import cn.borealin.giteee.model.common.ProfileListConverter
+import cn.borealin.giteee.model.common.ProfileListItemData
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
@@ -29,9 +31,20 @@ data class RawUserOrgsData(
     @SerializedName("members_url")
     val membersUrl: String,
     @Expose
+    @SerializedName("name")
+    val name: String,
+    @Expose
     @SerializedName("repos_url")
     val reposUrl: String,
     @Expose
     @SerializedName("url")
     val url: String,
-) : Parcelable
+) : Parcelable, ProfileListConverter {
+    override fun toProfileListItemData(): ProfileListItemData {
+        return ProfileListItemData(
+            name = name,
+            login = login,
+            avatarUrl = avatarUrl
+        )
+    }
+}

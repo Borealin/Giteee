@@ -7,14 +7,14 @@
 package cn.borealin.giteee.model.users
 
 import android.os.Parcelable
-import cn.borealin.giteee.ui.common.HomeMenuType
+import cn.borealin.giteee.model.common.HomeMenuType
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
 data class UserData(
     val name: String,
     val avatar: String?,
-    val loginName: String?,
+    val loginName: String,
     val biography: String?,
     val blog: String?,
     val email: String?,

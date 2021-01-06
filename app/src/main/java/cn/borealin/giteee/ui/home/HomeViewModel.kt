@@ -8,11 +8,13 @@ package cn.borealin.giteee.ui.home
 
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
-import cn.borealin.giteee.data.repository.LoginRepository
-import cn.borealin.giteee.ui.common.HomeMenuType
+import androidx.lifecycle.asLiveData
+import cn.borealin.giteee.data.repository.ProfileRepository
+import cn.borealin.giteee.model.common.HomeMenuType
+import kotlinx.coroutines.flow.flow
 
 class HomeViewModel @ViewModelInject constructor(
-    private val loginRepository: LoginRepository
+    private val profileRepository: ProfileRepository
 ) : ViewModel() {
     private val _homeMenuList = listOf(
         HomeMenuType.Issue(-1),
@@ -23,4 +25,7 @@ class HomeViewModel @ViewModelInject constructor(
     )
 
     val homeMenuList: List<HomeMenuType> = _homeMenuList
+    val localName = flow {
+        emit(profileRepository.checkLocalUsername())
+    }.asLiveData()
 }

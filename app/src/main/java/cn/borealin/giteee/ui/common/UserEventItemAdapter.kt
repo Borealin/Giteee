@@ -12,6 +12,7 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.UserEventItemBinding
 import cn.borealin.giteee.extension.doWithTry
+import cn.borealin.giteee.model.common.UserEventType
 
 class UserEventItemAdapter :
     PagingDataAdapter<UserEventType, UserEventItemHolder>(UserEventType.DIFF_CALLBACK) {

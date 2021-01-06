@@ -12,11 +12,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.HomeMenuItemBinding
+import cn.borealin.giteee.model.common.HomeMenuType
+import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 
-class HomeMenuItemAdapter :
+
+class HomeMenuItemAdapter(private val homeMenuTypeCallback: HomeMenuTypeCallback) :
     ListAdapter<HomeMenuType, HomeMenuItemHolder>(HomeMenuType.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMenuItemHolder {
-        return HomeMenuItemHolder.from(parent)
+        return HomeMenuItemHolder.from(parent, homeMenuTypeCallback)
     }
 
     override fun onBindViewHolder(holder: HomeMenuItemHolder, position: Int) {
@@ -25,39 +28,30 @@ class HomeMenuItemAdapter :
     }
 }
 
-class HomeMenuItemHolder(private val binding: HomeMenuItemBinding) :
+class HomeMenuItemHolder(
+    private val binding: HomeMenuItemBinding,
+    private val homeMenuTypeCallback: HomeMenuTypeCallback
+) :
     RecyclerView.ViewHolder(binding.root) {
 
     fun bind(type: HomeMenuType) {
         binding.apply {
             item = type
             clickListener = View.OnClickListener {
-                when (type) {
-                    is HomeMenuType.Issue -> {
-                    }
-                    is HomeMenuType.PullRequest -> {
-                    }
-                    is HomeMenuType.Repository -> {
-                    }
-                    is HomeMenuType.Organization -> {
-                    }
-                    is HomeMenuType.Star -> {
-                    }
-                    is HomeMenuType.Watch -> {
-                    }
-                    is HomeMenuType.Gists -> {
-                    }
-                }
+                homeMenuTypeCallback(type)
             }
             executePendingBindings()
         }
     }
 
     companion object {
-        fun from(parent: ViewGroup): HomeMenuItemHolder {
+        fun from(
+            parent: ViewGroup,
+            homeMenuTypeCallback: HomeMenuTypeCallback
+        ): HomeMenuItemHolder {
             val layoutInflater = LayoutInflater.from(parent.context)
             val binding = HomeMenuItemBinding.inflate(layoutInflater, parent, false)
-            return HomeMenuItemHolder(binding)
+            return HomeMenuItemHolder(binding, homeMenuTypeCallback)
         }
     }
 }
