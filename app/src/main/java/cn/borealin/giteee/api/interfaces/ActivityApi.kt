@@ -43,4 +43,12 @@ interface ActivityApi {
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
     ): List<UserEventData>
+
+    @GET("orgs/{org}/events")
+    suspend fun getOrganizationEvent(
+        @Path("org") org: String,
+        @Query("access_token") access_token: String,
+        @Query("page") page: Int,
+        @Query("per_page") pageSize: Int
+    ): List<UserEventData>
 }

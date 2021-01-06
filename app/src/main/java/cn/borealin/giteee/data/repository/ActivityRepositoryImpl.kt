@@ -29,7 +29,8 @@ class ActivityRepositoryImpl(
                     userPreference,
                     username,
                     received = false,
-                    public = false
+                    public = false,
+                    isOrganization = false
                 )
             }
         ).flow
@@ -44,7 +45,8 @@ class ActivityRepositoryImpl(
                     userPreference,
                     username,
                     received = false,
-                    public = true
+                    public = true,
+                    isOrganization = false
                 )
             }
         ).flow
@@ -59,7 +61,24 @@ class ActivityRepositoryImpl(
                     userPreference,
                     username,
                     received = true,
-                    public = false
+                    public = false,
+                    isOrganization = false
+                )
+            }
+        ).flow
+    }
+
+    override fun getOrganizationEvent(username: String): Flow<PagingData<UserEventType>> {
+        return Pager(
+            config = pageConfig,
+            pagingSourceFactory = {
+                EventPagingSource(
+                    activityApi,
+                    userPreference,
+                    username,
+                    received = false,
+                    public = false,
+                    isOrganization = true
                 )
             }
         ).flow

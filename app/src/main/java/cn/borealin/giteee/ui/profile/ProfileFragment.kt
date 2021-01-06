@@ -59,6 +59,9 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                     )
                 }
             }
+            else -> {
+
+            }
         }
     }
 
@@ -66,12 +69,24 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
     private fun getEvent(username: String? = null) {
         getEventJob?.cancel()
         getEventJob = lifecycleScope.launch {
-            if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
-                mViewModel.getPublicEvents(username)
-            } else {
-                mViewModel.getEvents(username)
-            }.collect {
-                userEventItemAdapter.submitData(it)
+            profileType?.let {
+                when {
+                    arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null -> {
+                        mViewModel.getPublicEvents(it.username)
+                    }
+                    it is ProfileType.User -> {
+                        mViewModel.getEvents(it.username)
+                    }
+                    else -> {
+                        mViewModel.getOrganizationEvents(it.username)
+                    }
+                }.collect { data ->
+                    userEventItemAdapter.submitData(data)
+                }
+            } ?: run {
+                mViewModel.getEvents(username).collect {
+                    userEventItemAdapter.submitData(it)
+                }
             }
         }
     }
@@ -100,12 +115,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                     profileRefresh.isRefreshing = false
                 })
                 profileType?.let {
-                    when (it) {
-                        is ProfileType.User -> getEvent(profileType?.username)
-                        is ProfileType.Organization -> {
-
-                        }
-                    }
+                    getEvent(profileType?.username)
                 }
             }
             followerContainer.setOnClickListener {
@@ -133,12 +143,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
             mViewModel.getUserProfile(profileType).observe(viewLifecycleOwner, {
                 profileRefresh.isRefreshing = false
                 profileType?.let {
-                    when (it) {
-                        is ProfileType.User -> getEvent(profileType?.username)
-                        is ProfileType.Organization -> {
-
-                        }
-                    }
+                    getEvent(profileType?.username)
                 }
             })
         }

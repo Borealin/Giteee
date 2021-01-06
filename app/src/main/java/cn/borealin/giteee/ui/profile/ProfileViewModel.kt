@@ -52,15 +52,19 @@ class ProfileViewModel @ViewModelInject constructor(
     }
 
 
-    suspend fun getPublicEvents(username: String? = null): Flow<PagingData<UserEventType>> {
-        val checkUsername = username ?: profileRepository.checkLocalUsername()
-        return activityRepository.getPublicEvent(checkUsername)
+    fun getPublicEvents(username: String): Flow<PagingData<UserEventType>> {
+        return activityRepository.getPublicEvent(username)
             .cachedIn(viewModelScope)
     }
 
     suspend fun getEvents(username: String? = null): Flow<PagingData<UserEventType>> {
         val checkUsername = username ?: profileRepository.checkLocalUsername()
         return activityRepository.getEvent(checkUsername)
+            .cachedIn(viewModelScope)
+    }
+
+    fun getOrganizationEvents(username: String): Flow<PagingData<UserEventType>> {
+        return activityRepository.getOrganizationEvent(username)
             .cachedIn(viewModelScope)
     }
 

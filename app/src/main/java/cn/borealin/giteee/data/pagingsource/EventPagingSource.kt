@@ -19,28 +19,38 @@ class EventPagingSource(
     private val userPreference: UserPreference,
     private val username: String,
     private val received: Boolean,
-    private val public: Boolean
+    private val public: Boolean,
+    private val isOrganization: Boolean
 ) : PagingSource<Int, UserEventType>() {
     override suspend fun load(params: LoadParams<Int>): LoadResult<Int, UserEventType> {
         val token = userPreference.accountToken.first()
         val position = params.key ?: 1
         return try {
-            val event = if (received) {
-                if (public) {
-                    activityApi.getUserReceivedPublicEvent(
-                        username,
-                        token,
-                        position,
-                        params.loadSize
-                    )
-                } else {
-                    activityApi.getUserReceivedEvent(username, token, position, params.loadSize)
-                }
+            val event = if (isOrganization) {
+                activityApi.getOrganizationEvent(
+                    username,
+                    token,
+                    position,
+                    params.loadSize
+                )
             } else {
-                if (public) {
-                    activityApi.getUserPublicEvent(username, token, position, params.loadSize)
+                if (received) {
+                    if (public) {
+                        activityApi.getUserReceivedPublicEvent(
+                            username,
+                            token,
+                            position,
+                            params.loadSize
+                        )
+                    } else {
+                        activityApi.getUserReceivedEvent(username, token, position, params.loadSize)
+                    }
                 } else {
-                    activityApi.getUserEvent(username, token, position, params.loadSize)
+                    if (public) {
+                        activityApi.getUserPublicEvent(username, token, position, params.loadSize)
+                    } else {
+                        activityApi.getUserEvent(username, token, position, params.loadSize)
+                    }
                 }
             }
             val data = event.map {
