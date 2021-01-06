@@ -1,27 +1,25 @@
 /*
- * Created by Borealin (308704199deniel@gmail.com) on 2020/12/31 下午11:30
- * Copyright (c) 2020 . All rights reserved.
- * Last modified 2020/12/31 下午11:30
+ * Created by Borealin (308704199deniel@gmail.com) on 2021/1/6 下午4:10
+ * Copyright (c) 2021 . All rights reserved.
+ * Last modified 2021/1/4 下午7:08
  */
 
-package cn.borealin.giteee.data
+package cn.borealin.giteee.data.repository
 
-import androidx.paging.PagingConfig
 import cn.borealin.giteee.api.Resource
-import cn.borealin.giteee.api.interfaces.GiteeApi
 import cn.borealin.giteee.api.interfaces.OAuthApi
+import cn.borealin.giteee.data.UserPreference
+import cn.borealin.giteee.data.UserPreferenceContract
 import cn.borealin.giteee.ui.auth.LoginContract
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.combine
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.flow.flow
 
-class RepositoryImpl(
+class LoginRepositoryImpl(
     private val oAuthApi: OAuthApi,
-    private val giteeApi: GiteeApi,
-    private val userPreference: UserPreference,
-    private val pageConfig: PagingConfig
-) : Repository {
+    private val userPreference: UserPreference
+) : LoginRepository {
 
     // Token About
     override fun requireLogin() =
@@ -34,8 +32,8 @@ class RepositoryImpl(
             } else {
                 try {
                     val result = oAuthApi.refreshToken(refreshToken)
-                    setAccountToken(result.accessToken)
-                    setRefreshToken(result.refreshToken)
+                    userPreference.setAccountToken(result.accessToken)
+                    userPreference.setRefreshToken(result.refreshToken)
                     emit(false)
                 } catch (e: Exception) {
                     emit(true)
@@ -46,16 +44,14 @@ class RepositoryImpl(
     override val accountToken: Flow<String>
         get() = userPreference.accountToken
 
-    override suspend fun setAccountToken(value: String) {
-        userPreference.setAccountToken(value)
-    }
-
     override val refreshToken: Flow<String>
         get() = userPreference.refreshToken
 
-    override suspend fun setRefreshToken(value: String) {
-        userPreference.setRefreshToken(value)
-    }
+    override val accountName: Flow<String>
+        get() = userPreference.accountName
+
+    override val accountLoginName: Flow<String>
+        get() = userPreference.accountLoginName
 
     override fun getToken(code: String) = flow {
         try {
@@ -65,12 +61,12 @@ class RepositoryImpl(
                 LoginContract.CALLBACK,
                 LoginContract.CLIENT_SECRET
             )
-            setAccountToken(result.accessToken)
-            setRefreshToken(result.refreshToken)
-            emit(Resource.success(result.accessToken))
+            userPreference.setAccountToken(result.accessToken)
+            userPreference.setRefreshToken(result.refreshToken)
+            emit(Resource.Success(result.accessToken))
         } catch (e: Exception) {
             e.printStackTrace()
-            emit(Resource.error("Network Error", null))
+            emit(Resource.Failure(e.cause))
         }
     }
 }

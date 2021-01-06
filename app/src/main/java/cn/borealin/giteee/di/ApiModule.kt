@@ -7,8 +7,9 @@
 package cn.borealin.giteee.di
 
 import cn.borealin.giteee.BuildConfig
-import cn.borealin.giteee.api.interfaces.GiteeApi
+import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.api.interfaces.OAuthApi
+import cn.borealin.giteee.api.interfaces.ProfileApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -78,9 +79,13 @@ object ApiModule {
     @Singleton
     fun provideOAuthService(retrofit: Retrofit): OAuthApi = retrofit.create(OAuthApi::class.java)
 
+    @Provides
+    @Singleton
+    fun provideProfileService(retrofit: Retrofit): ProfileApi =
+        retrofit.create(ProfileApi::class.java)
 
     @Provides
     @Singleton
-    fun provideGiteeService(retrofit: Retrofit): GiteeApi = retrofit.create(GiteeApi::class.java)
-
+    fun provideActivityService(retrofit: Retrofit): ActivityApi =
+        retrofit.create(ActivityApi::class.java)
 }

@@ -10,8 +10,6 @@ import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
-import androidx.navigation.ui.AppBarConfiguration
-import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityMainBinding
@@ -29,14 +27,6 @@ class MainActivity : AppCompatActivity() {
             homeViewModel = mViewModel
             lifecycleOwner = this@MainActivity
             val navController = findNavController(R.id.nav_host_fragment_activity_navigation)
-            val appBarConfiguration = AppBarConfiguration(
-                setOf(
-                    R.id.navigation_home,
-                    R.id.navigation_notifications,
-                    R.id.navigation_profile
-                )
-            )
-            setupActionBarWithNavController(navController, appBarConfiguration)
             navView.setupWithNavController(navController)
         }
     }

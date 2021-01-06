@@ -66,6 +66,27 @@ class UserPreference(context: Context) {
         }
     }
 
+    suspend fun setAccountName(accountName: String) {
+        accountName.reversed()
+        setValue(UserPreferenceContract.KEY_ACCOUNT_NAME, accountName)
+    }
+
+    val accountName =
+        getValueAsFlow(
+            UserPreferenceContract.KEY_ACCOUNT_NAME,
+            UserPreferenceContract.DEFAULT_ACCOUNT_NAME
+        )
+
+    suspend fun setAccountLoginName(loginName: String) {
+        setValue(UserPreferenceContract.KEY_ACCOUNT_LOGIN_NAME, loginName)
+    }
+
+    val accountLoginName =
+        getValueAsFlow(
+            UserPreferenceContract.KEY_ACCOUNT_LOGIN_NAME,
+            UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME
+        )
+
     suspend fun setAccountToken(token: String) {
         setValue(UserPreferenceContract.KEY_ACCOUNT_TOKEN, token)
     }

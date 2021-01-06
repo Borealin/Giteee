@@ -1,0 +1,174 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="profileDetail"
+            type="cn.borealin.giteee.model.users.ProfileDetail" />
+    </data>
+
+    <!--    <cn.borealin.giteee.view.CollapsibleToolbar-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        android:fitsSystemWindows="true"-->
+    <!--        android:minHeight="70dp"-->
+    <!--        app:layoutDescription="@xml/profile_header_scene"-->
+    <!--        app:layout_scrollFlags="scroll|enterAlways|snap|exitUntilCollapsed">-->
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_basic_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            app:layout_collapseMode="pin">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/profile_icon"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:layout_marginVertical="8dp"
+                android:layout_marginStart="14dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcImageUrl="@{profileDetail.avatar}" />
+
+            <TextView
+                android:id="@+id/profile_name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="14dp"
+                android:text="@{profileDetail.name}"
+                android:textColor="@color/black"
+                android:textSize="24sp"
+                app:layout_constraintStart_toEndOf="@id/profile_icon"
+                app:layout_constraintTop_toTopOf="@id/profile_icon" />
+
+            <TextView
+                android:id="@+id/profile_id"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@{profileDetail.loginName}"
+                android:textSize="16sp"
+                app:layout_constraintStart_toStartOf="@id/profile_name"
+                app:layout_constraintTop_toBottomOf="@id/profile_name" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/profile_other_info_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="72dp"
+            app:layout_collapseMode="none">
+
+            <TextView
+                android:id="@+id/profile_bio"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginVertical="10dp"
+                android:text="@{profileDetail.biography}"
+                android:textColor="@color/black"
+                android:textSize="16sp"
+                app:bindVisibleWithNullable="@{profileDetail.biography}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+
+            <LinearLayout
+                android:id="@+id/profile_blog_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginVertical="6dp"
+                app:bindVisibleWithNullable="@{profileDetail.blog}"
+                app:layout_constraintTop_toBottomOf="@id/profile_bio">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_blog_link_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_link_grey_24dp" />
+
+                <TextView
+                    android:id="@+id/profile_blog"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:text="@{profileDetail.blog}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_email_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginVertical="6dp"
+                app:bindVisibleWithNullable="@{profileDetail.email}"
+                app:layout_constraintTop_toBottomOf="@id/profile_blog_container">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_email_link_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_email_grey_24dp" />
+
+                <TextView
+                    android:id="@+id/profile_email"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_vertical"
+                    android:layout_marginStart="4dp"
+                    android:text="@{profileDetail.email}"
+                    android:textColor="@color/black"
+                    android:textSize="16sp" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/profile_follow_container"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="14dp"
+                android:layout_marginVertical="6dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/profile_email_container">
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/profile_follow_icon"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:src="@drawable/ic_follow_gray_24dp"
+                    android:visibility="@{(profileDetail.followerCount==null&amp;&amp;profileDetail.followingCount==null)?View.GONE:View.VISIBLE}" />
+
+                <TextView
+                    android:id="@+id/profile_follower_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="4dp"
+                    android:text="@{profileDetail.followerCount + @string/profile_follower_title}"
+                    app:bindVisibleWithNullable="@{profileDetail.followerCount}" />
+
+                <TextView
+                    android:id="@+id/profile_following_count"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{profileDetail.followingCount + @string/profile_following_title}"
+                    app:bindVisibleWithNullable="@{profileDetail.followingCount}" />
+            </LinearLayout>
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+    <!--</cn.borealin.giteee.view.CollapsibleToolbar>-->
+
+</layout>

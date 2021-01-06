@@ -17,7 +17,8 @@ import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import cn.borealin.giteee.R
-import cn.borealin.giteee.api.Status
+import cn.borealin.giteee.api.doFailure
+import cn.borealin.giteee.api.doSuccess
 import cn.borealin.giteee.databinding.ActivityLoginBinding
 import cn.borealin.giteee.extension.finishAndStartActivity
 import cn.borealin.giteee.extension.finishAndStartClearActivity
@@ -42,17 +43,13 @@ class LoginActivity : AppCompatActivity() {
             if (it == Intent.ACTION_VIEW) {
                 data?.getQueryParameter(LoginContract.RESPONSE_TYPE)?.let { code ->
                     mViewModel.getToken(code).observe(this, {
-                        when (it.status) {
-                            Status.SUCCESS -> {
-                                ToastUtils.show(this, getString(R.string.login_succeed))
-                                finishAndStartClearActivity(MainActivity::class.java)
-                            }
-                            Status.ERROR -> {
-                                ToastUtils.show(this, getString(R.string.login_failed))
-                                finishAndStartActivity(LoginActivity::class.java)
-                            }
-                            else -> {
-                            }
+                        it.doSuccess {
+                            ToastUtils.show(this, getString(R.string.login_succeed))
+                            finishAndStartClearActivity(MainActivity::class.java)
+                        }
+                        it.doFailure {
+                            ToastUtils.show(this, getString(R.string.login_failed))
+                            finishAndStartActivity(LoginActivity::class.java)
                         }
                     })
                 }

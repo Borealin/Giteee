@@ -14,4 +14,8 @@ object UserPreferenceContract {
     const val DEFAULT_ACCOUNT_TOKEN = "default_account_token"
     val KEY_REFRESH_TOKEN = preferencesKey<String>("refresh_token")
     const val DEFAULT_REFRESH_TOKEN = "default_refresh_token"
+    val KEY_ACCOUNT_LOGIN_NAME = preferencesKey<String>("account_login_name")
+    const val DEFAULT_ACCOUNT_LOGIN_NAME = "default_account_login_name"
+    val KEY_ACCOUNT_NAME = preferencesKey<String>("account_name")
+    const val DEFAULT_ACCOUNT_NAME = "default_account_name"
 }

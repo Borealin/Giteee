@@ -6,11 +6,14 @@
 
 package cn.borealin.giteee.di
 
-import cn.borealin.giteee.api.interfaces.GiteeApi
+import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.api.interfaces.OAuthApi
-import cn.borealin.giteee.data.Repository
-import cn.borealin.giteee.data.RepositoryFactory
+import cn.borealin.giteee.api.interfaces.ProfileApi
 import cn.borealin.giteee.data.UserPreference
+import cn.borealin.giteee.data.repository.ActivityRepository
+import cn.borealin.giteee.data.repository.LoginRepository
+import cn.borealin.giteee.data.repository.ProfileRepository
+import cn.borealin.giteee.data.repository.RepositoryFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -22,9 +25,22 @@ import javax.inject.Singleton
 class RepositoryModule {
     @Singleton
     @Provides
-    fun provideRepository(
+    fun provideLoginRepository(
         oAuthApi: OAuthApi,
-        giteeApi: GiteeApi,
         userPreference: UserPreference
-    ): Repository = RepositoryFactory.makeRepository(oAuthApi, giteeApi, userPreference)
+    ): LoginRepository = RepositoryFactory.makeLoginRepository(oAuthApi, userPreference)
+
+    @Singleton
+    @Provides
+    fun provideProfileRepository(
+        profileApi: ProfileApi,
+        userPreference: UserPreference
+    ): ProfileRepository = RepositoryFactory.makeProfileRepository(profileApi, userPreference)
+
+    @Singleton
+    @Provides
+    fun provideActivityRepository(
+        activityApi: ActivityApi,
+        userPreference: UserPreference
+    ): ActivityRepository = RepositoryFactory.makeActivityRepository(activityApi, userPreference)
 }

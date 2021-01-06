@@ -1,0 +1,244 @@
+<?xml version="1.0" encoding="utf-8"?>
+<MotionScene xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:motion="http://schemas.android.com/apk/res-auto">
+
+    <Transition
+        motion:constraintSetEnd="@+id/end"
+        motion:constraintSetStart="@+id/start"
+        motion:duration="1000"
+        motion:motionInterpolator="linear" />
+
+    <ConstraintSet android:id="@+id/start">
+        <Constraint
+            android:id="@+id/profile_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            motion:layout_constraintStart_toEndOf="@id/profile_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_icon" />
+
+        <Constraint
+            android:id="@+id/profile_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            motion:layout_constraintStart_toStartOf="@id/profile_name"
+            motion:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+        <Constraint
+            android:id="@+id/profile_bio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="14dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_blog_link_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_link_grey_24dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_bio"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_blog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_blog_link_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_blog_link_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_blog_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_email_link_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_email_grey_24dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_blog_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_email"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_email_link_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_email_link_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_email_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_follow_icon"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="10dp"
+            android:src="@drawable/ic_follow_gray_24dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_email_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_follower_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_follow_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_follow_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_follow_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_following_count"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_follow_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_follower_count"
+            motion:layout_constraintTop_toTopOf="@id/profile_follow_icon"
+            motion:visibilityMode="ignore" />
+    </ConstraintSet>
+
+    <ConstraintSet android:id="@+id/end">
+        <Constraint
+            android:id="@+id/profile_icon"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="12dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toTopOf="parent" />
+
+        <Constraint
+            android:id="@+id/profile_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:textColor="@color/black"
+            android:textSize="24sp"
+            motion:layout_constraintStart_toEndOf="@id/profile_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_icon" />
+
+        <Constraint
+            android:id="@+id/profile_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16sp"
+            motion:layout_constraintStart_toStartOf="@id/profile_name"
+            motion:layout_constraintTop_toBottomOf="@id/profile_name" />
+
+        <Constraint
+            android:id="@+id/profile_bio"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_icon"
+            motion:visibilityMode="ignore" />
+
+
+        <Constraint
+            android:id="@+id/profile_blog_link_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            android:src="@drawable/ic_link_grey_24dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_bio"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_blog"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_blog_link_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_blog_link_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_blog_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_email_link_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_blog_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_email"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_email_link_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_email_link_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_email_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_follow_icon"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="14dp"
+            android:layout_marginTop="0dp"
+            motion:layout_constraintStart_toStartOf="parent"
+            motion:layout_constraintTop_toBottomOf="@id/profile_email_link_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_follower_count"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="4dp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_follow_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_follow_icon"
+            motion:layout_constraintTop_toTopOf="@id/profile_follow_icon"
+            motion:visibilityMode="ignore" />
+
+        <Constraint
+            android:id="@+id/profile_following_count"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="8dp"
+            motion:layout_constraintBottom_toBottomOf="@id/profile_follow_icon"
+            motion:layout_constraintStart_toEndOf="@id/profile_follower_count"
+            motion:layout_constraintTop_toTopOf="@id/profile_follow_icon"
+            motion:visibilityMode="ignore" />
+
+    </ConstraintSet>
+</MotionScene>

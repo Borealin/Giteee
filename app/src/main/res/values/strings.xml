@@ -13,4 +13,12 @@
 
     <string name="home_my_work_title">My Work</string>
     <string name="default_item_title">Default Item Title</string>
+    <string name="profile_follower_title">follower</string>
+    <string name="profile_following_title">following</string>
+
+
+    <string name="action_share">Share</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="refresh_successfully">Refresh successfully</string>
 </resources>

@@ -7,14 +7,14 @@
 package cn.borealin.giteee.ui.common
 
 import android.view.LayoutInflater
+import android.view.View
 import android.view.ViewGroup
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.HomeMenuItemBinding
 
 class HomeMenuItemAdapter :
-    ListAdapter<HomeMenuType, HomeMenuItemHolder>(DIFF_CALLBACK) {
+    ListAdapter<HomeMenuType, HomeMenuItemHolder>(HomeMenuType.DIFF_CALLBACK) {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): HomeMenuItemHolder {
         return HomeMenuItemHolder.from(parent)
     }
@@ -23,33 +23,32 @@ class HomeMenuItemAdapter :
         val item = getItem(position)
         holder.bind(item)
     }
-
-
-    companion object {
-        val DIFF_CALLBACK: DiffUtil.ItemCallback<HomeMenuType> =
-            object : DiffUtil.ItemCallback<HomeMenuType>() {
-                override fun areItemsTheSame(oldItem: HomeMenuType, newItem: HomeMenuType) =
-                    oldItem == newItem
-
-                override fun areContentsTheSame(oldItem: HomeMenuType, newItem: HomeMenuType) =
-                    oldItem.title == newItem.title
-            }
-    }
 }
 
 class HomeMenuItemHolder(private val binding: HomeMenuItemBinding) :
     RecyclerView.ViewHolder(binding.root) {
-    init {
-        binding.setClickListener {
-            binding.item?.let {
-
-            }
-        }
-    }
 
     fun bind(type: HomeMenuType) {
         binding.apply {
             item = type
+            clickListener = View.OnClickListener {
+                when (type) {
+                    is HomeMenuType.Issue -> {
+                    }
+                    is HomeMenuType.PullRequest -> {
+                    }
+                    is HomeMenuType.Repository -> {
+                    }
+                    is HomeMenuType.Organization -> {
+                    }
+                    is HomeMenuType.Star -> {
+                    }
+                    is HomeMenuType.Watch -> {
+                    }
+                    is HomeMenuType.Gists -> {
+                    }
+                }
+            }
             executePendingBindings()
         }
     }

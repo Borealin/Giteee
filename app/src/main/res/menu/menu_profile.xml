@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?><!--
+  ~ Created by Henry Little (linc3288235@outlook.com) on 4/13/20 1:33 AM
+  ~ Copyright (c) 2020 . All rights reserved.
+  ~ Last modified 4/13/20 1:33 AM
+  -->
+
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/action_share"
+        android:icon="@drawable/ic_share_deep_orange_24dp"
+        android:title="@string/action_share"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/action_settings"
+        android:icon="@drawable/ic_settings_deep_orange_24dp"
+        android:title="@string/action_settings"
+        app:showAsAction="always" />
+</menu>

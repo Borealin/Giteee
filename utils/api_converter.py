@@ -85,11 +85,11 @@ def save_to_kotlin_data(name: str, path: str, content: list, comment: str = None
         l.append('/*\n'+comment+'\n*/')
     l.append('{}.{}\n\n'.format(
         package, path.split("/")[0]))
-    l.append('import android.os.Parcelable\nimport com.google.gson.annotations.Expose\nimport com.google.gson.annotations.SerializedName\nimport kotlinx.android.parcel.Parcelize\n\n')
+    l.append('import android.os.Parcelable\nimport com.google.gson.annotations.Expose\nimport com.google.gson.annotations.SerializedName\nimport kotlinx.parcelize.Parcelize\n\n')
     l.append('@Parcelize\ndata class {}(\n'.format(name))
     for line in content:
         name, type_raw = line
-        l.append('\t@Expose\n\t@SerializedName({})\n\tvar {}: {},\n'.format(name.strip(),
+        l.append('\t@Expose\n\t@SerializedName("{}")\n\tvar {}: {},\n'.format(name.strip(),
                                                                             str_to_hump(name.strip().strip('"')), type_translation[type_raw.strip()]))
     l.append(') : Parcelable')
     with open(path, 'w+') as file:
@@ -150,4 +150,4 @@ if __name__ == '__main__':
     for api in res_list:
         if not os.path.exists(api[1].split('/')[0]):
             os.mkdir(api[1].split('/')[0])
-        save_to_kotlin_data(api[0]+'Data', api[1], api[3][2])
+        save_to_kotlin_data(api[0]+'Data', api[1], api[3][3])

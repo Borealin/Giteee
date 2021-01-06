@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="item"
+            type="cn.borealin.giteee.ui.common.UserEventType" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{clickListener}"
+        android:paddingBottom="8dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/event_user_icon"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginVertical="8dp"
+            android:layout_marginStart="14dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+            app:srcImageUrl="@{item.avatarUrl}" />
+
+        <TextView
+            android:id="@+id/event_description"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="8dp"
+            android:layout_marginTop="4dp"
+            android:maxLines="3"
+            android:singleLine="false"
+            android:textSize="16sp"
+            app:descriptionText='@{item}'
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/event_user_icon"
+            app:layout_constraintTop_toTopOf="@id/event_user_icon" />
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/event_action_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginTop="5dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="@id/event_description"
+            app:layout_constraintTop_toBottomOf="@id/event_description"
+            app:srcIcon="@{item}"
+            tools:layout_editor_absoluteY="38dp"
+            tools:src="@drawable/ic_unknown_red_24dp" />
+
+        <TextView
+            android:id="@+id/event_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@{item.time}"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="@id/event_action_icon"
+            app:layout_constraintStart_toEndOf="@id/event_action_icon"
+            app:layout_constraintTop_toTopOf="@id/event_action_icon" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

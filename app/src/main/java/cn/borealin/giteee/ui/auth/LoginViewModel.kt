@@ -9,12 +9,12 @@ package cn.borealin.giteee.ui.auth
 import androidx.hilt.lifecycle.ViewModelInject
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.asLiveData
-import cn.borealin.giteee.data.Repository
+import cn.borealin.giteee.data.repository.LoginRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.flowOn
 
 class LoginViewModel @ViewModelInject constructor(
-    private val repository: Repository
+    private val loginRepository: LoginRepository
 ) : ViewModel() {
-    fun getToken(code: String) = repository.getToken(code).flowOn(Dispatchers.IO).asLiveData()
+    fun getToken(code: String) = loginRepository.getToken(code).flowOn(Dispatchers.IO).asLiveData()
 }
