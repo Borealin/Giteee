@@ -7,9 +7,6 @@
 package cn.borealin.giteee.ui.profile
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
@@ -19,12 +16,14 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.FragmentProfileBinding
+import cn.borealin.giteee.extension.newIntent
 import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.common.UserEventItemAdapter
 import cn.borealin.giteee.ui.repository.RepositoryListActivity
 import cn.borealin.giteee.ui.repository.RepositoryListType
+import cn.borealin.giteee.ui.setting.AboutActivity
 import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -208,15 +207,24 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                     getEvent()
                 }
             })
+            toolbarProfile.setOnMenuItemClickListener { item ->
+                when (item.itemId) {
+                    R.id.action_settings -> {
+                        startActivity(
+                            requireContext().newIntent(AboutActivity::class.java)
+                        )
+                        true
+                    }
+                    R.id.action_share -> {
+                        ToastUtils.show(requireContext(), R.string.no_finish_yet)
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        inflater.inflate(R.menu.menu_profile, menu)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return super.onOptionsItemSelected(item)
     }
 
     companion object {

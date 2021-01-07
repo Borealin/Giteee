@@ -94,3 +94,10 @@ fun bindingLoading(swipe: SwipeRefreshLayout, isLoading: Boolean) {
     swipe.isRefreshing = isLoading
     if (!isLoading) swipe.isEnabled = false
 }
+
+@BindingAdapter("bindClickListener")
+fun View.bindingClick(fn: () -> Unit) {
+    this.setOnClickListener {
+        fn()
+    }
+}

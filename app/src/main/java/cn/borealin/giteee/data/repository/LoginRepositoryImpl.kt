@@ -69,4 +69,11 @@ class LoginRepositoryImpl(
             emit(Resource.Failure(e.cause))
         }
     }
+
+    override suspend fun logout() {
+        userPreference.setAccountToken(UserPreferenceContract.DEFAULT_ACCOUNT_TOKEN)
+        userPreference.setRefreshToken(UserPreferenceContract.DEFAULT_REFRESH_TOKEN)
+        userPreference.setAccountName(UserPreferenceContract.DEFAULT_ACCOUNT_NAME)
+        userPreference.setAccountLoginName(UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME)
+    }
 }

@@ -16,4 +16,5 @@ interface LoginRepository {
     val accountName: Flow<String>
     val accountLoginName: Flow<String>
     fun getToken(code: String): Flow<Resource<String?>>
+    suspend fun logout()
 }
