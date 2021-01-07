@@ -25,6 +25,7 @@ import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.common.UserEventItemAdapter
 import cn.borealin.giteee.ui.repository.RepositoryListActivity
 import cn.borealin.giteee.ui.repository.RepositoryListType
+import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -113,7 +114,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                 }
             }
             else -> {
-
+                ToastUtils.show(requireContext(), R.string.no_finish_yet)
             }
         }
     }

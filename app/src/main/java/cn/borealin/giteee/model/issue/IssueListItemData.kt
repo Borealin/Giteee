@@ -10,6 +10,8 @@ import android.os.Parcelable
 import androidx.recyclerview.widget.DiffUtil
 import kotlinx.parcelize.Parcelize
 
+typealias IssueListItemCallback = (IssueListItemData) -> Unit
+
 @Parcelize
 data class IssueListItemData(
     val repoName: String,

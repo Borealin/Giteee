@@ -78,6 +78,9 @@ class ProfileListActivity : AppCompatActivity() {
             toolbarProfileList.setNavigationOnClickListener {
                 onBackPressed()
             }
+            eventRefresh.setOnRefreshListener {
+                getList()
+            }
             toolbarProfileList.title = getString(profileListType.toTitleStringRes())
             toolbarProfileList.subtitle = profileListType.username
             profileListContainer.adapter = profileListAdapter

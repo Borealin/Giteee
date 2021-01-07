@@ -17,6 +17,7 @@
     <string name="title_repository_list">Repositories</string>
     <string name="title_watch_list">Watched</string>
     <string name="title_star_list">Starred</string>
+    <string name="title_issue_list">Issues</string>
 
     <string name="home_my_work_title">My Work</string>
     <string name="default_item_title">Default Item Title</string>
@@ -31,4 +32,6 @@
     <string name="get_profile_failed">Get profile failed</string>
     <string name="get_pull_request_failed">Get pull requests failed</string>
     <string name="reason_get_pull_request_failed">Get pull requests failed since there is no API for it</string>
+    <string name="no_finish_yet">Haven\'t finished yet</string>
+    <string name="reason_get_issue_not_complete">Get created issue failed since there is no API for it</string>
 </resources>

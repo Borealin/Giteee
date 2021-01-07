@@ -18,6 +18,7 @@ import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityRepositoryListBinding
 import cn.borealin.giteee.model.repository.RepositoryListItemCallback
 import cn.borealin.giteee.ui.profile.*
+import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.binding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -47,7 +48,7 @@ class RepositoryListActivity : AppCompatActivity() {
     }
 
     private val onClickListener: RepositoryListItemCallback = {
-        TODO()
+        ToastUtils.show(this, R.string.no_finish_yet)
 //            repositoryListItemData ->
 //        startActivity(
 //            RepositoryActivity.newIntent(
@@ -68,6 +69,9 @@ class RepositoryListActivity : AppCompatActivity() {
             lifecycleOwner = this@RepositoryListActivity
             toolbarRepositoryList.setNavigationOnClickListener {
                 onBackPressed()
+            }
+            eventRefresh.setOnRefreshListener {
+                getList()
             }
             toolbarRepositoryList.title = getString(repositoryListType.toTitleStringRes())
             toolbarRepositoryList.subtitle = repositoryListType.username

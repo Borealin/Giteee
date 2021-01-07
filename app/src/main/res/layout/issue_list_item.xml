@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="cn.borealin.giteee.model.issue.IssueListItemData" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{clickListener}"
+        android:paddingVertical="10dp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/issue_issue_icon"
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_marginStart="14dp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/ic_issue_green_24dp" />
+
+        <TextView
+            android:id="@+id/issue_repo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="@{item.repoName}"
+            app:layout_constraintBottom_toBottomOf="@id/issue_issue_icon"
+            app:layout_constraintStart_toEndOf="@id/issue_issue_icon"
+            app:layout_constraintTop_toTopOf="@id/issue_issue_icon" />
+
+        <TextView
+            android:id="@+id/issue_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text='@{" # "+item.issueNumber}'
+            app:layout_constraintBottom_toBottomOf="@id/issue_repo"
+            app:layout_constraintStart_toEndOf="@id/issue_repo"
+            app:layout_constraintTop_toTopOf="@id/issue_repo" />
+
+        <TextView
+            android:id="@+id/issue_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@{item.timeRemain}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@id/issue_title" />
+
+        <TextView
+            android:id="@+id/issue_title"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="@{item.title}"
+            android:textColor="@color/black"
+            app:layout_constraintEnd_toStartOf="@id/issue_time"
+            app:layout_constraintStart_toStartOf="@id/issue_repo"
+            app:layout_constraintTop_toBottomOf="@id/issue_repo" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Giteee">
         <activity
+            android:name=".ui.issue.IssueListActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
             android:name=".ui.repository.RepositoryListActivity"
             android:theme="@style/NoActionBar" />
         <activity

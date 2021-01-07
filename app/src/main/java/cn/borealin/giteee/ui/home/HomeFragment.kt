@@ -11,9 +11,11 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.FragmentHomeBinding
+import cn.borealin.giteee.extension.newIntent
 import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
+import cn.borealin.giteee.ui.issue.IssueListActivity
 import cn.borealin.giteee.ui.profile.ProfileListActivity
 import cn.borealin.giteee.ui.profile.ProfileListType
 import cn.borealin.giteee.ui.repository.RepositoryListActivity
@@ -52,8 +54,13 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
             is HomeMenuType.PullRequest -> {
                 ToastUtils.show(requireContext(), R.string.reason_get_pull_request_failed)
             }
+            is HomeMenuType.Issue -> {
+                startActivity(
+                    requireContext().newIntent(IssueListActivity::class.java)
+                )
+            }
             else -> {
-
+                ToastUtils.show(requireContext(), R.string.no_finish_yet)
             }
         }
     }
