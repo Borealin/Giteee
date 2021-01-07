@@ -10,6 +10,8 @@
 
 A gitee mobile client for Android, develop in Kotlin
 
+A simple implementation for MVVM in kotlin
+
 ## Goal
 
 + [ ] Framework
@@ -22,44 +24,43 @@ A gitee mobile client for Android, develop in Kotlin
     + [x] DataStore
     + [ ] Room
 + [ ] Pages
-  + [ ] Home navigation
-    + [ ] home rv+concat adpter
-    + [ ] notification rv+paging 
-    + [ ] profile for user/organization
-      + [ ] follow er/ing same with organization
-      + [ ] repo display vp2+paging
-      + [ ] repo same with home repo
-      + [ ] orga same with home orga
-      + [ ] star same with home repo
-  + [ ] Issues/Pr
-    + [ ] list tablayout+vp2+rv
-    + [ ] item may give up
-  + [ ] Organizations 
-    + [ ] list rv+paging 
-    + [ ] item same as profile
-  + [ ] Repositories
-    + [ ] list rv+paging
+  + [x] Home navigation
+    + [x] home rv+concat adpter
+    + [x] notification rv+paging 
+    + [x] profile for user/organization
+      + [x] follow er/ing same with organization
+      + [x] repo display vp2+paging
+      + [x] repo same with home repo
+      + [x] orga same with home orga
+      + [x] star same with home repo
+  + [x] Issues/Pr
+    + [x] list tablayout+vp2+rv
+  + [x] Organizations 
+    + [x] list rv+paging 
+    + [x] item same as profile
+  + [x] Repositories
+    + [x] list rv+paging
     + [ ] item rv+concat adapter+md previewer
     + [ ] issue/pr same as home issue/pr
     + [ ] watcher same as home orga
     + [ ] browse code may give up detail view
     + [ ] commit rv+paging
-  + [ ] Search may give up
-    + [ ] repo same as home repo
-    + [ ] issue same as home issue
-    + [ ] user same as home orga
+  + [x] Search may give up
+    + [x] repo same as home repo
+    + [x] issue same as home issue
+    + [x] user same as home orga
 + [ ] Practical Implementation
-  + [ ] Shared item view
-    + [ ] user item view (orga foer/ing watcher search)
-    + [ ] repo item view (repo starred search)
-    + [ ] issue/pr item view (issue/pr notification)
+  + [x] Shared item view
+    + [x] user item view (orga foer/ing watcher search)
+    + [x] repo item view (repo starred search)
+    + [x] issue/pr item view (issue/pr notification)
   + [ ] Fragment
-    + [ ] Home
-    + [ ] Notification
-    + [ ] Profile
-    + [ ] Repo list
+    + [x] Home
+    + [x] Notification
+    + [x] Profile
+    + [x] Repo list
     + [ ] Repo detail
-    + [ ] Issue/Pr list
+    + [x] Issue/Pr list
     + [ ] Issue/Pr detail
-    + [ ] User list
-    + [ ] Search Selection
+    + [x] User list
+    + [x] Search Selection
