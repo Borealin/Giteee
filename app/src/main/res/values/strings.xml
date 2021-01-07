@@ -14,6 +14,9 @@
     <string name="title_following_list">Following</string>
     <string name="title_organization_list">Organizations</string>
     <string name="title_member_list">Members</string>
+    <string name="title_repository_list">Repositories</string>
+    <string name="title_watch_list">Watched</string>
+    <string name="title_star_list">Starred</string>
 
     <string name="home_my_work_title">My Work</string>
     <string name="default_item_title">Default Item Title</string>

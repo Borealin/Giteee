@@ -14,7 +14,7 @@ import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-data class UserEventData(
+data class RawUserEventData(
     @Expose
     @SerializedName("id")
     val id: Int,

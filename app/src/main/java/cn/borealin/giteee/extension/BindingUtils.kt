@@ -69,8 +69,23 @@ fun ImageView.bindImageUrl(url: String?) {
 }
 
 @BindingAdapter("bindVisibleWithNullable")
-fun View.bindVisibility(nullable: Any?) {
+fun View.bindVisibilityWithNullable(nullable: Any?) {
     visibility = if (nullable == null) View.GONE else View.VISIBLE
+}
+
+@BindingAdapter("bindVisibleWithNullableOrEmpty")
+fun View.bindVisibilityWithNullableOrEmpty(nullable: Any?) {
+    visibility = when (nullable) {
+        null -> View.GONE
+        is String -> {
+            if (nullable.isEmpty()) {
+                View.GONE
+            } else {
+                View.VISIBLE
+            }
+        }
+        else -> View.VISIBLE
+    }
 }
 
 @BindingAdapter("bindLoading")

@@ -25,7 +25,7 @@ class ProfileActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         profileType =
             requireNotNull(intent.getParcelableExtra(KEY_PROFILE_TYPE)) {
-                "params is not null"
+                "profile params is not null"
             }
         mBinding.apply {
             ProfileFragment.addFragment(

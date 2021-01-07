@@ -69,7 +69,7 @@ class ProfileListActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         profileListType = requireNotNull(intent.getParcelableExtra(KEY_PROFILE_LIST_TYPE)) {
-            "params is not null"
+            "profile list params is not null"
         }
         profileListAdapter = ProfileListAdapter(onClickListener)
         mBinding.apply {

@@ -6,7 +6,7 @@
 
 package cn.borealin.giteee.api.interfaces
 
-import cn.borealin.giteee.model.activity.UserEventData
+import cn.borealin.giteee.model.activity.RawUserEventData
 import retrofit2.http.GET
 import retrofit2.http.Path
 import retrofit2.http.Query
@@ -18,7 +18,7 @@ interface ActivityApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<UserEventData>
+    ): List<RawUserEventData>
 
     @GET("users/{username}/events/public")
     suspend fun getUserPublicEvent(
@@ -26,7 +26,7 @@ interface ActivityApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<UserEventData>
+    ): List<RawUserEventData>
 
     @GET("users/{username}/received_events")
     suspend fun getUserReceivedEvent(
@@ -34,7 +34,7 @@ interface ActivityApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<UserEventData>
+    ): List<RawUserEventData>
 
     @GET("users/{username}/received_events/public")
     suspend fun getUserReceivedPublicEvent(
@@ -42,7 +42,7 @@ interface ActivityApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<UserEventData>
+    ): List<RawUserEventData>
 
     @GET("orgs/{org}/events")
     suspend fun getOrganizationEvent(
@@ -50,5 +50,5 @@ interface ActivityApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<UserEventData>
+    ): List<RawUserEventData>
 }

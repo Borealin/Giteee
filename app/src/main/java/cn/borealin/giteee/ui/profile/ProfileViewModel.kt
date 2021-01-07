@@ -14,7 +14,6 @@ import cn.borealin.giteee.api.Resource
 import cn.borealin.giteee.api.doFailure
 import cn.borealin.giteee.api.doSuccess
 import cn.borealin.giteee.data.repository.ActivityRepository
-import cn.borealin.giteee.data.repository.LoginRepository
 import cn.borealin.giteee.data.repository.ProfileRepository
 import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.ProfileListItemData
@@ -25,7 +24,6 @@ import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow
 
 class ProfileViewModel @ViewModelInject constructor(
-    private val loginRepository: LoginRepository,
     private val profileRepository: ProfileRepository,
     private val activityRepository: ActivityRepository
 ) : ViewModel() {

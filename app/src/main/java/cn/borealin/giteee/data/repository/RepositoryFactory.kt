@@ -10,6 +10,7 @@ import androidx.paging.PagingConfig
 import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.api.interfaces.OAuthApi
 import cn.borealin.giteee.api.interfaces.ProfileApi
+import cn.borealin.giteee.api.interfaces.RepositoryApi
 import cn.borealin.giteee.data.UserPreference
 
 object RepositoryFactory {
@@ -35,6 +36,15 @@ object RepositoryFactory {
         userPreference: UserPreference
     ): ActivityRepository = ActivityRepositoryImpl(
         activityApi,
+        userPreference,
+        pagingConfig
+    )
+
+    fun makeRepositoryRepository(
+        repositoryApi: RepositoryApi,
+        userPreference: UserPreference
+    ): RepositoryRepository = RepositoryRepositoryImpl(
+        repositoryApi,
         userPreference,
         pagingConfig
     )

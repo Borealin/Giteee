@@ -22,6 +22,8 @@ import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.common.UserEventItemAdapter
+import cn.borealin.giteee.ui.repository.RepositoryListActivity
+import cn.borealin.giteee.ui.repository.RepositoryListType
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -55,6 +57,45 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                         ProfileListActivity.newIntent(
                             requireContext(),
                             ProfileListType.Member(profile.username)
+                        )
+                    )
+                }
+            }
+            is HomeMenuType.Repository -> {
+                profileType?.let { profile ->
+                    if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
+                        startActivity(
+                            RepositoryListActivity.newIntent(
+                                requireContext(),
+                                RepositoryListType.PublicRepository(profile.username)
+                            )
+                        )
+                    } else {
+                        startActivity(
+                            RepositoryListActivity.newIntent(
+                                requireContext(),
+                                RepositoryListType.MyRepository()
+                            )
+                        )
+                    }
+                }
+            }
+            is HomeMenuType.Watch -> {
+                profileType?.let { profile ->
+                    startActivity(
+                        RepositoryListActivity.newIntent(
+                            requireContext(),
+                            RepositoryListType.Watch(profile.username)
+                        )
+                    )
+                }
+            }
+            is HomeMenuType.Star -> {
+                profileType?.let { profile ->
+                    startActivity(
+                        RepositoryListActivity.newIntent(
+                            requireContext(),
+                            RepositoryListType.Star(profile.username)
                         )
                     )
                 }

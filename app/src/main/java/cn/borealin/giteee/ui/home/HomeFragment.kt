@@ -16,6 +16,8 @@ import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.profile.ProfileListActivity
 import cn.borealin.giteee.ui.profile.ProfileListType
+import cn.borealin.giteee.ui.repository.RepositoryListActivity
+import cn.borealin.giteee.ui.repository.RepositoryListType
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -37,6 +39,14 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
                         )
                     )
                 })
+            }
+            is HomeMenuType.Repository -> {
+                startActivity(
+                    RepositoryListActivity.newIntent(
+                        requireContext(),
+                        RepositoryListType.MyRepository()
+                    )
+                )
             }
             else -> {
 

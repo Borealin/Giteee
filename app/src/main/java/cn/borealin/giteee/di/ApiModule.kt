@@ -10,6 +10,7 @@ import cn.borealin.giteee.BuildConfig
 import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.api.interfaces.OAuthApi
 import cn.borealin.giteee.api.interfaces.ProfileApi
+import cn.borealin.giteee.api.interfaces.RepositoryApi
 import com.google.gson.GsonBuilder
 import dagger.Module
 import dagger.Provides
@@ -88,4 +89,9 @@ object ApiModule {
     @Singleton
     fun provideActivityService(retrofit: Retrofit): ActivityApi =
         retrofit.create(ActivityApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideRepositoryService(retrofit: Retrofit): RepositoryApi =
+        retrofit.create(RepositoryApi::class.java)
 }

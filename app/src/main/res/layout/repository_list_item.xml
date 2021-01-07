@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="item"
+            type="cn.borealin.giteee.model.common.RepositoryListItemData" />
+
+        <variable
+            name="clickListener"
+            type="android.view.View.OnClickListener" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/selectableItemBackground"
+        android:onClick="@{clickListener}"
+        android:paddingVertical="10dp">
+
+        <TextView
+            android:id="@+id/repository_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            android:text="@{item.name}"
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/repository_description"
+            bindVisibleWithNullableOrEmpty="@{item.description}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:maxLines="2"
+            android:singleLine="false"
+            android:text="@{item.description}"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="@id/repository_name"
+            app:layout_constraintTop_toBottomOf="@id/repository_name" />
+
+        <LinearLayout
+            android:id="@+id/repository_info_container"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:layout_marginEnd="8dp"
+            android:gravity="center_vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="@id/repository_name"
+            app:layout_constraintTop_toBottomOf="@id/repository_description">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/repository_star_icon"
+                android:layout_width="16dp"
+                android:layout_height="16dp"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_star_yellow_24dp" />
+
+            <TextView
+                android:id="@+id/repository_star_count"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:text="@{Integer.toString(item.stargazer)}" />
+
+            <LinearLayout
+                android:id="@+id/repository_language_container"
+                bindVisibleWithNullable="@{item.language}"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:gravity="center_vertical">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/repository_language_icon"
+                    android:layout_width="12dp"
+                    android:layout_height="12dp"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:srcCompat="@color/blue_500" />
+
+                <TextView
+                    android:id="@+id/repository_language"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="@{item.language}" />
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
