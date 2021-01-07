@@ -10,6 +10,7 @@ import androidx.paging.Pager
 import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import cn.borealin.giteee.api.interfaces.RepositoryApi
+import cn.borealin.giteee.api.interfaces.SearchApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.pagingsource.RepositoryPagingSource
 import cn.borealin.giteee.model.repository.RepositoryListItemData
@@ -18,6 +19,7 @@ import kotlinx.coroutines.flow.Flow
 
 class RepositoryRepositoryImpl(
     private val repositoryApi: RepositoryApi,
+    private val searchApi: SearchApi,
     private val userPreference: UserPreference,
     private val pageConfig: PagingConfig
 ) : RepositoryRepository {
@@ -27,6 +29,7 @@ class RepositoryRepositoryImpl(
             pagingSourceFactory = {
                 RepositoryPagingSource(
                     repositoryApi,
+                    searchApi,
                     userPreference,
                     repositoryListType
                 )

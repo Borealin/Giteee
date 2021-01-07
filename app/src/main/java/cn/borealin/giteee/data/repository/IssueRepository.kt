@@ -8,8 +8,9 @@ package cn.borealin.giteee.data.repository
 
 import androidx.paging.PagingData
 import cn.borealin.giteee.model.issue.IssueListItemData
+import cn.borealin.giteee.ui.issue.IssueListType
 import kotlinx.coroutines.flow.Flow
 
 interface IssueRepository {
-    fun getIssueList(): Flow<PagingData<IssueListItemData>>
+    fun getIssueList(issueListType: IssueListType): Flow<PagingData<IssueListItemData>>
 }

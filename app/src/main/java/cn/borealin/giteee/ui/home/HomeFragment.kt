@@ -16,10 +16,12 @@ import cn.borealin.giteee.model.common.HomeMenuType
 import cn.borealin.giteee.model.common.HomeMenuTypeCallback
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import cn.borealin.giteee.ui.issue.IssueListActivity
+import cn.borealin.giteee.ui.issue.IssueListType
 import cn.borealin.giteee.ui.profile.ProfileListActivity
 import cn.borealin.giteee.ui.profile.ProfileListType
 import cn.borealin.giteee.ui.repository.RepositoryListActivity
 import cn.borealin.giteee.ui.repository.RepositoryListType
+import cn.borealin.giteee.ui.search.SearchActivity
 import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
@@ -56,7 +58,7 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
             }
             is HomeMenuType.Issue -> {
                 startActivity(
-                    requireContext().newIntent(IssueListActivity::class.java)
+                    IssueListActivity.newIntent(requireContext(), IssueListType.My())
                 )
             }
             else -> {
@@ -72,6 +74,17 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
             homeViewModel = mViewModel
             lifecycleOwner = this@HomeFragment
             myWorkContainer.adapter = homeMenuItemAdapter
+            toolbarHome.setOnMenuItemClickListener {
+                when (it.itemId) {
+                    R.id.action_search -> {
+                        startActivity(requireContext().newIntent(SearchActivity::class.java))
+                        true
+                    }
+                    else -> {
+                        false
+                    }
+                }
+            }
         }
     }
 }

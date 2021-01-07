@@ -16,6 +16,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Giteee">
         <activity
+            android:name=".ui.search.SearchActivity"
+            android:theme="@style/NoActionBar" />
+        <activity
             android:name=".ui.setting.AboutActivity"
             android:theme="@style/NoActionBar" />
         <activity

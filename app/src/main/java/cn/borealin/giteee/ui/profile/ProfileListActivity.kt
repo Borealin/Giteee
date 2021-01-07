@@ -47,7 +47,7 @@ class ProfileListActivity : AppCompatActivity() {
 
     private val onClickListener: ProfileListItemCallback = { profileListItemData ->
         when (profileListType) {
-            is ProfileListType.Follower, is ProfileListType.Following, is ProfileListType.Member -> {
+            is ProfileListType.Follower, is ProfileListType.Following, is ProfileListType.Member, is ProfileListType.Search -> {
                 startActivity(
                     ProfileActivity.newIntent(
                         this@ProfileListActivity,
@@ -82,7 +82,8 @@ class ProfileListActivity : AppCompatActivity() {
                 getList()
             }
             toolbarProfileList.title = getString(profileListType.toTitleStringRes())
-            toolbarProfileList.subtitle = profileListType.username
+            toolbarProfileList.subtitle =
+                (if (profileListType is ProfileListType.Search) "about " else "") + profileListType.username
             profileListContainer.adapter = profileListAdapter
             getList()
         }
@@ -130,6 +131,13 @@ sealed class ProfileListType : Parcelable {
     data class Member(override val username: String) : ProfileListType() {
         override fun toTitleStringRes(): Int {
             return R.string.title_member_list
+        }
+    }
+
+    @Parcelize
+    data class Search(override val username: String) : ProfileListType() {
+        override fun toTitleStringRes(): Int {
+            return R.string.title_search_list
         }
     }
 }

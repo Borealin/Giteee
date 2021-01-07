@@ -101,3 +101,8 @@ fun View.bindingClick(fn: () -> Unit) {
         fn()
     }
 }
+
+@BindingAdapter("bindSearchText")
+fun TextView.bindingSearchText(content: String) {
+    text = content
+}

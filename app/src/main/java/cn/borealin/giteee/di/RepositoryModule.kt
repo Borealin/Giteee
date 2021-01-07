@@ -30,9 +30,15 @@ class RepositoryModule {
     fun provideProfileRepository(
         profileApi: ProfileApi,
         repositoryApi: RepositoryApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): ProfileRepository =
-        RepositoryFactory.makeProfileRepository(profileApi, repositoryApi, userPreference)
+        RepositoryFactory.makeProfileRepository(
+            profileApi,
+            repositoryApi,
+            searchApi,
+            userPreference
+        )
 
     @Singleton
     @Provides
@@ -45,15 +51,17 @@ class RepositoryModule {
     @Provides
     fun provideRepositoryRepository(
         repositoryApi: RepositoryApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): RepositoryRepository =
-        RepositoryFactory.makeRepositoryRepository(repositoryApi, userPreference)
+        RepositoryFactory.makeRepositoryRepository(repositoryApi, searchApi, userPreference)
 
     @Singleton
     @Provides
     fun provideIssueRepository(
         issueApi: IssueApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): IssueRepository =
-        RepositoryFactory.makeIssueRepository(issueApi, userPreference)
+        RepositoryFactory.makeIssueRepository(issueApi, searchApi, userPreference)
 }

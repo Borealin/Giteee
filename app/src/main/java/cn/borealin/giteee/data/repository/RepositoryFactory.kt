@@ -22,10 +22,12 @@ object RepositoryFactory {
     fun makeProfileRepository(
         profileApi: ProfileApi,
         repositoryApi: RepositoryApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): ProfileRepository = ProfileRepositoryImpl(
         profileApi,
         repositoryApi,
+        searchApi,
         userPreference,
         pagingConfig
     )
@@ -41,18 +43,22 @@ object RepositoryFactory {
 
     fun makeRepositoryRepository(
         repositoryApi: RepositoryApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): RepositoryRepository = RepositoryRepositoryImpl(
         repositoryApi,
+        searchApi,
         userPreference,
         pagingConfig
     )
 
     fun makeIssueRepository(
         issueApi: IssueApi,
+        searchApi: SearchApi,
         userPreference: UserPreference
     ): IssueRepository = IssueRepositoryImpl(
         issueApi,
+        searchApi,
         userPreference,
         pagingConfig
     )

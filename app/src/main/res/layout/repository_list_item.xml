@@ -83,8 +83,8 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/repository_language_icon"
-                    android:layout_width="12dp"
-                    android:layout_height="12dp"
+                    android:layout_width="10dp"
+                    android:layout_height="10dp"
                     android:scaleType="centerCrop"
                     app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                     app:srcCompat="@color/blue_500" />

@@ -18,7 +18,7 @@ import kotlinx.coroutines.flow.Flow
 class IssueViewModel @ViewModelInject constructor(
     private val issueRepository: IssueRepository
 ) : ViewModel() {
-    fun getIssueList(): Flow<PagingData<IssueListItemData>> {
-        return issueRepository.getIssueList().cachedIn(viewModelScope)
+    fun getIssueList(issueListType: IssueListType): Flow<PagingData<IssueListItemData>> {
+        return issueRepository.getIssueList(issueListType).cachedIn(viewModelScope)
     }
 }

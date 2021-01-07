@@ -12,6 +12,7 @@ import androidx.paging.PagingData
 import cn.borealin.giteee.api.Resource
 import cn.borealin.giteee.api.interfaces.ProfileApi
 import cn.borealin.giteee.api.interfaces.RepositoryApi
+import cn.borealin.giteee.api.interfaces.SearchApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.UserPreferenceContract
 import cn.borealin.giteee.data.pagingsource.ProfilePagingSource
@@ -28,6 +29,7 @@ import kotlinx.coroutines.flow.flowOn
 class ProfileRepositoryImpl(
     private val profileApi: ProfileApi,
     private val repositoryApi: RepositoryApi,
+    private val searchApi: SearchApi,
     private val userPreference: UserPreference,
     private val pageConfig: PagingConfig
 ) : ProfileRepository {
@@ -84,6 +86,7 @@ class ProfileRepositoryImpl(
             pagingSourceFactory = {
                 ProfilePagingSource(
                     profileApi,
+                    searchApi,
                     userPreference,
                     profileListType
                 )

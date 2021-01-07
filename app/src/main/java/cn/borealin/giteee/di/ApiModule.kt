@@ -96,4 +96,9 @@ object ApiModule {
     @Singleton
     fun provideIssueService(retrofit: Retrofit): IssueApi =
         retrofit.create(IssueApi::class.java)
+
+    @Provides
+    @Singleton
+    fun provideSearchService(retrofit: Retrofit): SearchApi =
+        retrofit.create(SearchApi::class.java)
 }

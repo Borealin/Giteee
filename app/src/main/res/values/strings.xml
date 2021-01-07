@@ -14,6 +14,7 @@
     <string name="title_following_list">Following</string>
     <string name="title_organization_list">Organizations</string>
     <string name="title_member_list">Members</string>
+    <string name="title_search_list">Search</string>
     <string name="title_repository_list">Repositories</string>
     <string name="title_watch_list">Watched</string>
     <string name="title_star_list">Starred</string>
@@ -28,6 +29,7 @@
     <string name="action_share">Share</string>
     <string name="action_settings">Settings</string>
     <string name="action_logout">Logout</string>
+    <string name="action_search">Search</string>
 
     <string name="refresh_successfully">Refresh successfully</string>
     <string name="get_profile_failed">Get profile failed</string>
@@ -35,6 +37,10 @@
     <string name="reason_get_pull_request_failed">Get pull requests failed since there is no API for it</string>
     <string name="no_finish_yet">Haven\'t finished yet</string>
     <string name="reason_get_issue_not_complete">Get created issue failed since there is no API for it</string>
+
+    <string name="search_repo_format">Search repositories about </string>
+    <string name="search_issue_format">Search issues about </string>
+    <string name="search_profile_format">Search persons about </string>
 
     <string name="borealin_name">施楚宁</string>
     <string name="borealin_id">\@Borealin</string>

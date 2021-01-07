@@ -8,6 +8,7 @@ package cn.borealin.giteee.data.pagingsource
 
 import androidx.paging.PagingSource
 import cn.borealin.giteee.api.interfaces.ProfileApi
+import cn.borealin.giteee.api.interfaces.SearchApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.model.users.ProfileListItemData
 import cn.borealin.giteee.ui.profile.ProfileListType
@@ -17,6 +18,7 @@ import java.io.IOException
 
 class ProfilePagingSource(
     private val profileApi: ProfileApi,
+    private val searchApi: SearchApi,
     private val userPreference: UserPreference,
     private val listType: ProfileListType
 ) : PagingSource<Int, ProfileListItemData>() {
@@ -46,6 +48,12 @@ class ProfilePagingSource(
                 is ProfileListType.Member -> profileApi.getOrganizationMember(
                     listType.username,
                     token,
+                    position,
+                    params.loadSize
+                )
+                is ProfileListType.Search -> searchApi.searchUser(
+                    token,
+                    listType.username,
                     position,
                     params.loadSize
                 )

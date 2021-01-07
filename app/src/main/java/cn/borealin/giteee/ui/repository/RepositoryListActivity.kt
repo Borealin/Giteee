@@ -74,7 +74,8 @@ class RepositoryListActivity : AppCompatActivity() {
                 getList()
             }
             toolbarRepositoryList.title = getString(repositoryListType.toTitleStringRes())
-            toolbarRepositoryList.subtitle = repositoryListType.username
+            toolbarRepositoryList.subtitle =
+                (if (repositoryListType is RepositoryListType.Search) "about " else "") + repositoryListType.username
             repositoryListContainer.adapter = repositoryListAdapter
             getList()
         }
@@ -128,6 +129,13 @@ sealed class RepositoryListType : Parcelable {
     data class Star(override val username: String) : RepositoryListType() {
         override fun toTitleStringRes(): Int {
             return R.string.title_star_list
+        }
+    }
+
+    @Parcelize
+    data class Search(override val username: String) : RepositoryListType() {
+        override fun toTitleStringRes(): Int {
+            return R.string.title_search_list
         }
     }
 }

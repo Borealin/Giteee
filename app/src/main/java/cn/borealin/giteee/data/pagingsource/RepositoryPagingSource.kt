@@ -8,6 +8,7 @@ package cn.borealin.giteee.data.pagingsource
 
 import androidx.paging.PagingSource
 import cn.borealin.giteee.api.interfaces.RepositoryApi
+import cn.borealin.giteee.api.interfaces.SearchApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.model.repository.RepositoryListItemData
 import cn.borealin.giteee.ui.repository.RepositoryListType
@@ -17,6 +18,7 @@ import java.io.IOException
 
 class RepositoryPagingSource(
     private val repositoryApi: RepositoryApi,
+    private val searchApi: SearchApi,
     private val userPreference: UserPreference,
     private val listType: RepositoryListType
 ) : PagingSource<Int, RepositoryListItemData>() {
@@ -52,6 +54,12 @@ class RepositoryPagingSource(
                     is RepositoryListType.OrganizationRepository -> repositoryApi.getOrganizationRepository(
                         listType.username,
                         token,
+                        position,
+                        params.loadSize
+                    )
+                    is RepositoryListType.Search -> searchApi.searchRepository(
+                        token,
+                        listType.username,
                         position,
                         params.loadSize
                     )

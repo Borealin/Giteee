@@ -27,6 +27,7 @@
                 android:id="@+id/toolbar_home"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:menu="@menu/menu_home"
                 app:title="@string/title_home" />
         </com.google.android.material.appbar.AppBarLayout>
 
