@@ -6,6 +6,7 @@
 
 package cn.borealin.giteee.ui.profile
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.core.content.res.ResourcesCompat
@@ -216,7 +217,19 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                         true
                     }
                     R.id.action_share -> {
-                        ToastUtils.show(requireContext(), R.string.no_finish_yet)
+                        profileType?.let {
+                            val intent = Intent().apply {
+                                action = Intent.ACTION_SEND
+                                type = "text/plain"
+                                putExtra(
+                                    Intent.EXTRA_TEXT,
+                                    "https://gitee.com/" + it.username
+                                )
+                            }
+                            startActivity(Intent.createChooser(intent, null))
+                        } ?: run {
+                            ToastUtils.show(requireContext(), R.string.no_finish_yet)
+                        }
                         true
                     }
                     else -> {

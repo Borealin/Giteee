@@ -32,11 +32,14 @@
 
         <TextView
             android:id="@+id/issue_repo"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginHorizontal="14dp"
+            android:maxLines="2"
+            android:singleLine="false"
             android:text="@{item.repoName}"
             app:layout_constraintBottom_toBottomOf="@id/issue_issue_icon"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/issue_issue_icon"
             app:layout_constraintTop_toTopOf="@id/issue_issue_icon" />
 
@@ -53,6 +56,7 @@
             android:id="@+id/issue_time"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginEnd="14dp"
             android:text="@{item.timeRemain}"
             android:textColor="@color/black"
             app:layout_constraintEnd_toEndOf="parent"
