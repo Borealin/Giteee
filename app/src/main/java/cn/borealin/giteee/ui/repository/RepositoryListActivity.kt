@@ -135,7 +135,7 @@ sealed class RepositoryListType : Parcelable {
     @Parcelize
     data class Search(override val username: String) : RepositoryListType() {
         override fun toTitleStringRes(): Int {
-            return R.string.title_search_list
+            return R.string.title_repository_list
         }
     }
 }

@@ -20,6 +20,7 @@
     <string name="title_star_list">Starred</string>
     <string name="title_issue_list">Issues</string>
     <string name="title_about">About</string>
+    <string name="title_user_list">Users</string>
 
     <string name="home_my_work_title">My Work</string>
     <string name="default_item_title">Default Item Title</string>

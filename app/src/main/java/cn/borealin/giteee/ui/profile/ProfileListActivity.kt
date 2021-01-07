@@ -137,7 +137,7 @@ sealed class ProfileListType : Parcelable {
     @Parcelize
     data class Search(override val username: String) : ProfileListType() {
         override fun toTitleStringRes(): Int {
-            return R.string.title_search_list
+            return R.string.title_user_list
         }
     }
 }

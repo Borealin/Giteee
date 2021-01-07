@@ -35,11 +35,11 @@
 }
 
 # Change here com.yourcompany.yourpackage
--keep,includedescriptorclasses class com.yourcompany.yourpackage.**$$serializer { *; } # <-- change package name to your app's
--keepclassmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
+-keep,includedescriptorclasses class cn.borealin.giteee.**$$serializer { *; } # <-- change package name to your app's
+-keepclassmembers class cn.borealin.giteee.** { # <-- change package name to your app's
     *** Companion;
 }
--keepclasseswithmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
+-keepclasseswithmembers class cn.borealin.giteee.** { # <-- change package name to your app's
     kotlinx.serialization.KSerializer serializer(...);
 }
 # JSR 305 annotations are for embedding nullability information.
@@ -54,3 +54,14 @@
 # OkHttp platform used only on JVM and when Conscrypt dependency is available.
 -dontwarn okhttp3.internal.platform.ConscryptPlatform
 -dontwarn org.conscrypt.ConscryptHostnameVerifier
+-keep class cn.borealin.giteee.model.** { *; }
+
+-keep class cn.borealin.giteee.ui.** { *; }
+
+-keep class cn.borealin.giteee.api.** { *; }
+
+-keep class cn.borealin.giteee.extension.** { *; }
+
+-keep class cn.borealin.giteee.databinding.** { *; }
+
+-keep class com.hi.dhl.jdatabinding.** { *; }
