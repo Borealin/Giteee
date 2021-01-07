@@ -6,10 +6,7 @@
 
 package cn.borealin.giteee.di
 
-import cn.borealin.giteee.api.interfaces.ActivityApi
-import cn.borealin.giteee.api.interfaces.OAuthApi
-import cn.borealin.giteee.api.interfaces.ProfileApi
-import cn.borealin.giteee.api.interfaces.RepositoryApi
+import cn.borealin.giteee.api.interfaces.*
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.repository.*
 import dagger.Module
@@ -51,4 +48,12 @@ class RepositoryModule {
         userPreference: UserPreference
     ): RepositoryRepository =
         RepositoryFactory.makeRepositoryRepository(repositoryApi, userPreference)
+
+    @Singleton
+    @Provides
+    fun provideIssueRepository(
+        issueApi: IssueApi,
+        userPreference: UserPreference
+    ): IssueRepository =
+        RepositoryFactory.makeIssueRepository(issueApi, userPreference)
 }

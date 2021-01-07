@@ -6,7 +6,7 @@
 
 package cn.borealin.giteee.api.interfaces
 
-import cn.borealin.giteee.model.activity.RawUserEventData
+import cn.borealin.giteee.model.issue.RawIssueData
 import retrofit2.http.GET
 import retrofit2.http.Query
 
@@ -16,6 +16,6 @@ interface IssueApi {
         @Query("access_token") access_token: String,
         @Query("page") page: Int,
         @Query("per_page") pageSize: Int
-    ): List<RawUserEventData>
+    ): List<RawIssueData>
 
 }
