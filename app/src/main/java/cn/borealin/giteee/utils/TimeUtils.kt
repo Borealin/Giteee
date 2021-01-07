@@ -22,7 +22,7 @@ object TimeUtils {
                 "${diff.toHours()} hour${if (diff.toHours() > 1) "s" else ""} ago"
             }
             else -> {
-                "${diff.toMinutes()} hour${if (diff.toMinutes() > 1) "s" else ""} ago"
+                "${diff.toMinutes()} minute${if (diff.toMinutes() > 1) "s" else ""} ago"
             }
         }
     }

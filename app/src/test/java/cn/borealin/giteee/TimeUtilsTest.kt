@@ -12,7 +12,7 @@ import org.junit.Test
 class TimeUtilsTest {
     @Test
     fun testTime() {
-        val timeString = "2020-12-29T22:29:16+08:00"
+        val timeString = "2021-01-07T22:29:16+01:00"
         print(TimeUtils.fromTimeToRemaining(timeString))
     }
 }
