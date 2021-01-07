@@ -24,9 +24,11 @@ object RepositoryFactory {
 
     fun makeProfileRepository(
         profileApi: ProfileApi,
+        repositoryApi: RepositoryApi,
         userPreference: UserPreference
     ): ProfileRepository = ProfileRepositoryImpl(
         profileApi,
+        repositoryApi,
         userPreference,
         pagingConfig
     )

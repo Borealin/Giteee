@@ -24,31 +24,38 @@ class RepositoryPagingSource(
         val token = userPreference.accountToken.first()
         val position = params.key ?: 1
         return try {
-            val repositoryList = when (listType) {
-                is RepositoryListType.MyRepository -> repositoryApi.getCurrentRepository(
-                    token,
-                    position,
-                    params.loadSize
-                )
-                is RepositoryListType.PublicRepository -> repositoryApi.getUserRepository(
-                    listType.username,
-                    token,
-                    position,
-                    params.loadSize
-                )
-                is RepositoryListType.Watch -> repositoryApi.getUserWatchRepository(
-                    listType.username,
-                    token,
-                    position,
-                    params.loadSize
-                )
-                is RepositoryListType.Star -> repositoryApi.getUserStarRepository(
-                    listType.username,
-                    token,
-                    position,
-                    params.loadSize
-                )
-            }
+            val repositoryList =
+                when (listType) {
+                    is RepositoryListType.MyRepository -> repositoryApi.getCurrentRepository(
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                    is RepositoryListType.PublicRepository -> repositoryApi.getUserRepository(
+                        listType.username,
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                    is RepositoryListType.Watch -> repositoryApi.getUserWatchRepository(
+                        listType.username,
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                    is RepositoryListType.Star -> repositoryApi.getUserStarRepository(
+                        listType.username,
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                    is RepositoryListType.OrganizationRepository -> repositoryApi.getOrganizationRepository(
+                        listType.username,
+                        token,
+                        position,
+                        params.loadSize
+                    )
+                }
             val data = repositoryList.map {
                 it.toRepositoryListItemData()
             }

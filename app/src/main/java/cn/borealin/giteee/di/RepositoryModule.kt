@@ -32,8 +32,10 @@ class RepositoryModule {
     @Provides
     fun provideProfileRepository(
         profileApi: ProfileApi,
+        repositoryApi: RepositoryApi,
         userPreference: UserPreference
-    ): ProfileRepository = RepositoryFactory.makeProfileRepository(profileApi, userPreference)
+    ): ProfileRepository =
+        RepositoryFactory.makeProfileRepository(profileApi, repositoryApi, userPreference)
 
     @Singleton
     @Provides

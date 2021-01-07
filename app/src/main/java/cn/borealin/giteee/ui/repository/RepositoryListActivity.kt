@@ -96,6 +96,13 @@ sealed class RepositoryListType : Parcelable {
     }
 
     @Parcelize
+    data class OrganizationRepository(override val username: String) : RepositoryListType() {
+        override fun toTitleStringRes(): Int {
+            return R.string.title_repository_list
+        }
+    }
+
+    @Parcelize
     data class PublicRepository(override val username: String) : RepositoryListType() {
         override fun toTitleStringRes(): Int {
             return R.string.title_repository_list

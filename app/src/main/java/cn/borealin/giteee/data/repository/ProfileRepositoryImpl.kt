@@ -11,6 +11,7 @@ import androidx.paging.PagingConfig
 import androidx.paging.PagingData
 import cn.borealin.giteee.api.Resource
 import cn.borealin.giteee.api.interfaces.ProfileApi
+import cn.borealin.giteee.api.interfaces.RepositoryApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.UserPreferenceContract
 import cn.borealin.giteee.data.pagingsource.ProfilePagingSource
@@ -19,10 +20,14 @@ import cn.borealin.giteee.model.users.UserData
 import cn.borealin.giteee.ui.profile.ProfileListType
 import cn.borealin.giteee.ui.profile.ProfileType
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.*
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.flow.flow
+import kotlinx.coroutines.flow.flowOn
 
 class ProfileRepositoryImpl(
     private val profileApi: ProfileApi,
+    private val repositoryApi: RepositoryApi,
     private val userPreference: UserPreference,
     private val pageConfig: PagingConfig
 ) : ProfileRepository {
@@ -30,11 +35,9 @@ class ProfileRepositoryImpl(
         val token = userPreference.accountToken.first()
         try {
             val userProfile = profileApi.getCurrentProfile(token)
-            val userOrganization =
-                profileApi.getUserOrganizations(userProfile.login, token, null, null)
             userPreference.setAccountName(userProfile.name)
             userPreference.setAccountLoginName(userProfile.login)
-            emit(Resource.Success(UserData.fromRawUserData(userProfile, userOrganization.size)))
+            emit(Resource.Success(userProfile))
         } catch (e: Exception) {
             emit(Resource.Failure(e.cause))
         }
@@ -44,18 +47,25 @@ class ProfileRepositoryImpl(
         val token = userPreference.accountToken.first()
         try {
             when (profileType) {
-                is ProfileType.User -> {
+                is ProfileType.User, is ProfileType.My -> {
                     val userProfile = profileApi.getUserProfile(profileType.username, token)
                     val userOrganization =
                         profileApi.getUserOrganizations(profileType.username, token, null, null)
-                    emit(
-                        Resource.Success(
-                            UserData.fromRawUserData(
-                                userProfile,
-                                userOrganization.size
-                            )
+                    val userData = if (profileType is ProfileType.My) {
+                        val userRepository =
+                            repositoryApi.getCurrentRepository(token, null, null)
+                        UserData.fromRawUserData(
+                            userProfile,
+                            userOrganization.size,
+                            userRepository.size
                         )
-                    )
+                    } else {
+                        UserData.fromRawUserData(
+                            userProfile,
+                            userOrganization.size
+                        )
+                    }
+                    emit(Resource.Success(userData))
                 }
                 is ProfileType.Organization -> {
                     val userProfile = profileApi.getOrganization(profileType.username, token)
@@ -84,9 +94,7 @@ class ProfileRepositoryImpl(
     override suspend fun checkLocalUsername(): String {
         val localUserLoginName = userPreference.accountLoginName.first()
         if (localUserLoginName == UserPreferenceContract.DEFAULT_ACCOUNT_LOGIN_NAME) {
-            getCurrentProfile().collectLatest {
-
-            }
+            getCurrentProfile().first()
         }
         return userPreference.accountLoginName.first()
     }

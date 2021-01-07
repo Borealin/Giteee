@@ -63,20 +63,31 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
             }
             is HomeMenuType.Repository -> {
                 profileType?.let { profile ->
-                    if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
-                        startActivity(
-                            RepositoryListActivity.newIntent(
-                                requireContext(),
-                                RepositoryListType.PublicRepository(profile.username)
+                    when (profile) {
+                        is ProfileType.User -> {
+                            startActivity(
+                                RepositoryListActivity.newIntent(
+                                    requireContext(),
+                                    RepositoryListType.PublicRepository(profile.username)
+                                )
                             )
-                        )
-                    } else {
-                        startActivity(
-                            RepositoryListActivity.newIntent(
-                                requireContext(),
-                                RepositoryListType.MyRepository()
+                        }
+                        is ProfileType.My -> {
+                            startActivity(
+                                RepositoryListActivity.newIntent(
+                                    requireContext(),
+                                    RepositoryListType.MyRepository()
+                                )
                             )
-                        )
+                        }
+                        is ProfileType.Organization -> {
+                            startActivity(
+                                RepositoryListActivity.newIntent(
+                                    requireContext(),
+                                    RepositoryListType.OrganizationRepository(profile.username)
+                                )
+                            )
+                        }
                     }
                 }
             }
@@ -107,25 +118,25 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
     }
 
     private var getEventJob: Job? = null
-    private fun getEvent(username: String? = null) {
+    private fun getEvent() {
         getEventJob?.cancel()
         getEventJob = lifecycleScope.launch {
             profileType?.let {
-                when {
-                    arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null -> {
+                when (it) {
+                    is ProfileType.User -> {
                         mViewModel.getPublicEvents(it.username)
                     }
-                    it is ProfileType.User -> {
+                    is ProfileType.My -> {
                         mViewModel.getEvents(it.username)
                     }
-                    else -> {
+                    is ProfileType.Organization -> {
                         mViewModel.getOrganizationEvents(it.username)
                     }
                 }.collect { data ->
                     userEventItemAdapter.submitData(data)
                 }
             } ?: run {
-                mViewModel.getEvents(username).collect {
+                mViewModel.getEvents().collect {
                     userEventItemAdapter.submitData(it)
                 }
             }
@@ -139,8 +150,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
         val argName = arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE)
         if (argName == null) {
             mViewModel.localName.observe(viewLifecycleOwner, {
-                profileType = ProfileType.User(it)
-                getEvent(it)
+                profileType = ProfileType.My(it)
             })
         } else {
             profileType = argName
@@ -148,7 +158,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
         mBinding.apply {
             profileViewModel = mViewModel
             lifecycleOwner = this@ProfileFragment
-            if (arguments?.getParcelable<ProfileType>(KEY_PROFILE_TYPE) != null) {
+            if (profileType is ProfileType.User || profileType is ProfileType.Organization) {
                 toolbarProfile.menu.removeItem(R.id.action_settings)
             }
             profileRefresh.setOnRefreshListener {
@@ -156,7 +166,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
                     profileRefresh.isRefreshing = false
                 })
                 profileType?.let {
-                    getEvent(profileType?.username)
+                    getEvent()
                 }
             }
             followerContainer.setOnClickListener {
@@ -184,7 +194,7 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
             mViewModel.getUserProfile(profileType).observe(viewLifecycleOwner, {
                 profileRefresh.isRefreshing = false
                 profileType?.let {
-                    getEvent(profileType?.username)
+                    getEvent()
                 }
             })
         }

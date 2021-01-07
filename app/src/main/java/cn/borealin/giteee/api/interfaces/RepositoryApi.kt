@@ -28,6 +28,15 @@ interface RepositoryApi {
         @Query("per_page") pageSize: Int?
     ): List<RawRepositoryData>
 
+    @GET("orgs/{org}/repos")
+    suspend fun getOrganizationRepository(
+        @Path("org") org: String,
+        @Query("access_token") accessToken: String,
+        @Query("page") page: Int?,
+        @Query("per_page") pageSize: Int?
+    ): List<RawRepositoryData>
+
+
     @GET("users/{username}/starred")
     suspend fun getUserStarRepository(
         @Path("username") username: String,

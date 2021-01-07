@@ -47,6 +47,12 @@ data class UserData(
             is ProfileType.User -> listOf(
                 HomeMenuType.Repository(publicRepos),
                 HomeMenuType.Organization(publicOrgs),
+                HomeMenuType.Star(stared),
+                HomeMenuType.Watch(watched)
+            )
+            is ProfileType.My -> listOf(
+                HomeMenuType.Repository(publicRepos),
+                HomeMenuType.Organization(publicOrgs),
                 HomeMenuType.Gists(publicGists),
                 HomeMenuType.Star(stared),
                 HomeMenuType.Watch(watched)
@@ -70,6 +76,25 @@ data class UserData(
                 followerCount = userData.followers,
                 followingCount = userData.following,
                 publicRepos = userData.publicRepos,
+                publicOrgs = orgsCount,
+                publicGists = userData.publicGists,
+                stared = userData.stared,
+                watched = userData.watched,
+                member = -1
+            )
+        }
+
+        fun fromRawUserData(userData: RawUserData, orgsCount: Int, repoCount: Int): UserData {
+            return UserData(
+                name = userData.name,
+                avatar = userData.avatarUrl,
+                loginName = userData.login,
+                biography = userData.bio,
+                blog = userData.blog,
+                email = userData.email,
+                followerCount = userData.followers,
+                followingCount = userData.following,
+                publicRepos = repoCount,
                 publicOrgs = orgsCount,
                 publicGists = userData.publicGists,
                 stared = userData.stared,

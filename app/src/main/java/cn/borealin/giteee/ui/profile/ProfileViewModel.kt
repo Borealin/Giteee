@@ -34,7 +34,7 @@ class ProfileViewModel @ViewModelInject constructor(
 
     fun getUserProfile(profileType: ProfileType? = null) = liveData {
         val checkProfileType =
-            profileType ?: ProfileType.User(profileRepository.checkLocalUsername())
+            profileType ?: ProfileType.My(profileRepository.checkLocalUsername())
         profileRepository.getProfile(checkProfileType).collectLatest { result ->
             result.doSuccess {
                 _profile.postValue(it.toProfileDetail())
@@ -75,17 +75,7 @@ class ProfileViewModel @ViewModelInject constructor(
         emit(profileRepository.checkLocalUsername())
     }.asLiveData()
 
-    private val _profileMenuList = MutableLiveData<List<HomeMenuType>>().apply {
-        postValue(
-            listOf(
-                HomeMenuType.Repository(-1),
-                HomeMenuType.Organization(-1),
-                HomeMenuType.Gists(-1),
-                HomeMenuType.Star(-1),
-                HomeMenuType.Watch(-1)
-            )
-        )
-    }
+    private val _profileMenuList = MutableLiveData<List<HomeMenuType>>()
 
     val profileMenuList: LiveData<List<HomeMenuType>> = _profileMenuList
 

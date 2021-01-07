@@ -50,6 +50,9 @@ sealed class ProfileType : Parcelable {
     abstract val username: String
 
     @Parcelize
+    data class My(override val username: String) : ProfileType()
+
+    @Parcelize
     data class User(override val username: String) : ProfileType()
 
     @Parcelize
