@@ -20,7 +20,7 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout
 import cn.borealin.giteee.R
 import cn.borealin.giteee.model.common.HomeMenuType
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import cn.borealin.giteee.ui.common.HomeMenuItemAdapter
 import coil.load
 import timber.log.Timber

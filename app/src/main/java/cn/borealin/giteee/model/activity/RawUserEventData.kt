@@ -7,7 +7,7 @@
 package cn.borealin.giteee.model.activity
 
 import android.os.Parcelable
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import cn.borealin.giteee.utils.TimeUtils
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName

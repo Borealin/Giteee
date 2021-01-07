@@ -27,6 +27,7 @@
                 android:id="@+id/toolbar_repository_list"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_arrow_back_deep_orange_24dp"
                 app:title="@string/title_repository_list" />
         </com.google.android.material.appbar.AppBarLayout>
 

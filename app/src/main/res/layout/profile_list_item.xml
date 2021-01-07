@@ -6,7 +6,7 @@
 
         <variable
             name="item"
-            type="cn.borealin.giteee.model.common.ProfileListItemData" />
+            type="cn.borealin.giteee.model.users.ProfileListItemData" />
 
         <variable
             name="clickListener"

@@ -13,8 +13,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.RepositoryListItemBinding
 import cn.borealin.giteee.extension.doWithTry
-import cn.borealin.giteee.model.common.RepositoryListItemCallback
-import cn.borealin.giteee.model.common.RepositoryListItemData
+import cn.borealin.giteee.model.repository.RepositoryListItemCallback
+import cn.borealin.giteee.model.repository.RepositoryListItemData
 
 class RepositoryListAdapter(private val onClickListener: RepositoryListItemCallback) :
     PagingDataAdapter<RepositoryListItemData, RepositoryListItemHolder>(RepositoryListItemData.DIFF_CALLBACK) {

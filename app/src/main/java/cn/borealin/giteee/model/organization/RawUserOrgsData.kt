@@ -1,8 +1,8 @@
 package cn.borealin.giteee.model.organization
 
 import android.os.Parcelable
-import cn.borealin.giteee.model.common.ProfileListConverter
-import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.users.ProfileListConverter
+import cn.borealin.giteee.model.users.ProfileListItemData
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize

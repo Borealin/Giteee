@@ -27,6 +27,7 @@
                 android:id="@+id/toolbar_profile_list"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                app:navigationIcon="@drawable/ic_arrow_back_deep_orange_24dp"
                 app:title="@string/title_profile" />
         </com.google.android.material.appbar.AppBarLayout>
 

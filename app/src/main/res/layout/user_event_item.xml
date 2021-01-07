@@ -7,7 +7,7 @@
 
         <variable
             name="item"
-            type="cn.borealin.giteee.model.common.UserEventType" />
+            type="cn.borealin.giteee.model.users.UserEventType" />
 
         <variable
             name="clickListener"

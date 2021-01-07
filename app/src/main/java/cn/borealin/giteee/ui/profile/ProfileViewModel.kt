@@ -16,9 +16,9 @@ import cn.borealin.giteee.api.doSuccess
 import cn.borealin.giteee.data.repository.ActivityRepository
 import cn.borealin.giteee.data.repository.ProfileRepository
 import cn.borealin.giteee.model.common.HomeMenuType
-import cn.borealin.giteee.model.common.ProfileListItemData
-import cn.borealin.giteee.model.common.UserEventType
 import cn.borealin.giteee.model.users.ProfileDetail
+import cn.borealin.giteee.model.users.ProfileListItemData
+import cn.borealin.giteee.model.users.UserEventType
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.flow.flow

@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityProfileListBinding
-import cn.borealin.giteee.model.common.ProfileListItemCallback
+import cn.borealin.giteee.model.users.ProfileListItemCallback
 import com.hi.dhl.jdatabinding.binding
 import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.Job
@@ -75,6 +75,9 @@ class ProfileListActivity : AppCompatActivity() {
         mBinding.apply {
             profileViewModel = mViewModel
             lifecycleOwner = this@ProfileListActivity
+            toolbarProfileList.setNavigationOnClickListener {
+                onBackPressed()
+            }
             toolbarProfileList.title = getString(profileListType.toTitleStringRes())
             toolbarProfileList.subtitle = profileListType.username
             profileListContainer.adapter = profileListAdapter

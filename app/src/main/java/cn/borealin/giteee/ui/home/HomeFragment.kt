@@ -18,6 +18,7 @@ import cn.borealin.giteee.ui.profile.ProfileListActivity
 import cn.borealin.giteee.ui.profile.ProfileListType
 import cn.borealin.giteee.ui.repository.RepositoryListActivity
 import cn.borealin.giteee.ui.repository.RepositoryListType
+import cn.borealin.giteee.utils.ToastUtils
 import com.hi.dhl.jdatabinding.DataBindingFragment
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -47,6 +48,9 @@ class HomeFragment : DataBindingFragment(R.layout.fragment_home) {
                         RepositoryListType.MyRepository()
                     )
                 )
+            }
+            is HomeMenuType.PullRequest -> {
+                ToastUtils.show(requireContext(), R.string.reason_get_pull_request_failed)
             }
             else -> {
 

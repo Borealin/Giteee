@@ -9,7 +9,7 @@ package cn.borealin.giteee.data.pagingsource
 import androidx.paging.PagingSource
 import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.data.UserPreference
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException
 import java.io.IOException

@@ -9,7 +9,7 @@ package cn.borealin.giteee.data.pagingsource
 import androidx.paging.PagingSource
 import cn.borealin.giteee.api.interfaces.ProfileApi
 import cn.borealin.giteee.data.UserPreference
-import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.users.ProfileListItemData
 import cn.borealin.giteee.ui.profile.ProfileListType
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException

@@ -7,7 +7,7 @@
 package cn.borealin.giteee.data.repository
 
 import androidx.paging.PagingData
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import kotlinx.coroutines.flow.Flow
 
 interface ActivityRepository {

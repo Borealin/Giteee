@@ -9,7 +9,7 @@ package cn.borealin.giteee.data.pagingsource
 import androidx.paging.PagingSource
 import cn.borealin.giteee.api.interfaces.RepositoryApi
 import cn.borealin.giteee.data.UserPreference
-import cn.borealin.giteee.model.common.RepositoryListItemData
+import cn.borealin.giteee.model.repository.RepositoryListItemData
 import cn.borealin.giteee.ui.repository.RepositoryListType
 import kotlinx.coroutines.flow.first
 import retrofit2.HttpException

@@ -11,6 +11,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.core.content.res.ResourcesCompat
 import androidx.core.os.bundleOf
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
@@ -160,6 +161,15 @@ class ProfileFragment : DataBindingFragment(R.layout.fragment_profile) {
             lifecycleOwner = this@ProfileFragment
             if (profileType is ProfileType.User || profileType is ProfileType.Organization) {
                 toolbarProfile.menu.removeItem(R.id.action_settings)
+                toolbarProfile.navigationIcon =
+                    ResourcesCompat.getDrawable(
+                        resources,
+                        R.drawable.ic_arrow_back_deep_orange_24dp,
+                        null
+                    )
+                toolbarProfile.setNavigationOnClickListener {
+                    requireActivity().onBackPressed()
+                }
             }
             profileRefresh.setOnRefreshListener {
                 mViewModel.getUserProfile(profileType).observe(viewLifecycleOwner, {

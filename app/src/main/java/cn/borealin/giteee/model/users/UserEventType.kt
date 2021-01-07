@@ -1,10 +1,10 @@
 /*
- * Created by Borealin (308704199deniel@gmail.com) on 2021/1/7 上午12:09
+ * Created by Borealin (308704199deniel@gmail.com) on 2021/1/7 上午11:55
  * Copyright (c) 2021 . All rights reserved.
- * Last modified 2021/1/6 下午8:42
+ * Last modified 2021/1/7 上午12:13
  */
 
-package cn.borealin.giteee.model.common
+package cn.borealin.giteee.model.users
 
 import androidx.annotation.DrawableRes
 import androidx.recyclerview.widget.DiffUtil

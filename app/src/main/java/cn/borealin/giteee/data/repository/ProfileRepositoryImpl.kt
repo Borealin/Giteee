@@ -15,7 +15,7 @@ import cn.borealin.giteee.api.interfaces.RepositoryApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.UserPreferenceContract
 import cn.borealin.giteee.data.pagingsource.ProfilePagingSource
-import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.users.ProfileListItemData
 import cn.borealin.giteee.model.users.UserData
 import cn.borealin.giteee.ui.profile.ProfileListType
 import cn.borealin.giteee.ui.profile.ProfileType

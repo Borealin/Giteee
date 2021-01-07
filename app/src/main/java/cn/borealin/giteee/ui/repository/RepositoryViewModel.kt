@@ -12,7 +12,7 @@ import androidx.lifecycle.viewModelScope
 import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import cn.borealin.giteee.data.repository.RepositoryRepository
-import cn.borealin.giteee.model.common.RepositoryListItemData
+import cn.borealin.giteee.model.repository.RepositoryListItemData
 import kotlinx.coroutines.flow.Flow
 
 class RepositoryViewModel @ViewModelInject constructor(

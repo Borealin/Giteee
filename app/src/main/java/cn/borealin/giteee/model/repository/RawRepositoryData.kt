@@ -7,8 +7,6 @@
 package cn.borealin.giteee.model.repository
 
 import android.os.Parcelable
-import cn.borealin.giteee.model.common.RepositoryListConverter
-import cn.borealin.giteee.model.common.RepositoryListItemData
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import kotlinx.parcelize.Parcelize

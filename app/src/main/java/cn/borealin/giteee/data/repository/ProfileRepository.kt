@@ -8,7 +8,7 @@ package cn.borealin.giteee.data.repository
 
 import androidx.paging.PagingData
 import cn.borealin.giteee.api.Resource
-import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.users.ProfileListItemData
 import cn.borealin.giteee.model.users.RawUserData
 import cn.borealin.giteee.model.users.UserData
 import cn.borealin.giteee.ui.profile.ProfileListType

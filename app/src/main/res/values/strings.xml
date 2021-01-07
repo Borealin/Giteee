@@ -29,4 +29,6 @@
 
     <string name="refresh_successfully">Refresh successfully</string>
     <string name="get_profile_failed">Get profile failed</string>
+    <string name="get_pull_request_failed">Get pull requests failed</string>
+    <string name="reason_get_pull_request_failed">Get pull requests failed since there is no API for it</string>
 </resources>

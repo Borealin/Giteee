@@ -12,7 +12,7 @@ import androidx.paging.PagingData
 import cn.borealin.giteee.api.interfaces.ActivityApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.pagingsource.EventPagingSource
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import kotlinx.coroutines.flow.Flow
 
 class ActivityRepositoryImpl(

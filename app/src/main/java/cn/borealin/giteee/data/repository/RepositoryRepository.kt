@@ -7,7 +7,7 @@
 package cn.borealin.giteee.data.repository
 
 import androidx.paging.PagingData
-import cn.borealin.giteee.model.common.RepositoryListItemData
+import cn.borealin.giteee.model.repository.RepositoryListItemData
 import cn.borealin.giteee.ui.repository.RepositoryListType
 import kotlinx.coroutines.flow.Flow
 

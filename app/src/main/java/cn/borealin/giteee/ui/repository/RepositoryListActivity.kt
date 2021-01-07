@@ -16,7 +16,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityRepositoryListBinding
-import cn.borealin.giteee.model.common.RepositoryListItemCallback
+import cn.borealin.giteee.model.repository.RepositoryListItemCallback
 import cn.borealin.giteee.ui.profile.*
 import com.hi.dhl.jdatabinding.binding
 import dagger.hilt.android.AndroidEntryPoint
@@ -47,6 +47,7 @@ class RepositoryListActivity : AppCompatActivity() {
     }
 
     private val onClickListener: RepositoryListItemCallback = {
+        TODO()
 //            repositoryListItemData ->
 //        startActivity(
 //            RepositoryActivity.newIntent(
@@ -65,6 +66,9 @@ class RepositoryListActivity : AppCompatActivity() {
         mBinding.apply {
             repositoryViewModel = mViewModel
             lifecycleOwner = this@RepositoryListActivity
+            toolbarRepositoryList.setNavigationOnClickListener {
+                onBackPressed()
+            }
             toolbarRepositoryList.title = getString(repositoryListType.toTitleStringRes())
             toolbarRepositoryList.subtitle = repositoryListType.username
             repositoryListContainer.adapter = repositoryListAdapter

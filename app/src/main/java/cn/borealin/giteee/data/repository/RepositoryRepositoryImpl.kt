@@ -12,7 +12,7 @@ import androidx.paging.PagingData
 import cn.borealin.giteee.api.interfaces.RepositoryApi
 import cn.borealin.giteee.data.UserPreference
 import cn.borealin.giteee.data.pagingsource.RepositoryPagingSource
-import cn.borealin.giteee.model.common.RepositoryListItemData
+import cn.borealin.giteee.model.repository.RepositoryListItemData
 import cn.borealin.giteee.ui.repository.RepositoryListType
 import kotlinx.coroutines.flow.Flow
 

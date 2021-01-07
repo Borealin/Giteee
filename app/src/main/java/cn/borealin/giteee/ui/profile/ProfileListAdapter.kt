@@ -13,8 +13,8 @@ import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.RecyclerView
 import cn.borealin.giteee.databinding.ProfileListItemBinding
 import cn.borealin.giteee.extension.doWithTry
-import cn.borealin.giteee.model.common.ProfileListItemCallback
-import cn.borealin.giteee.model.common.ProfileListItemData
+import cn.borealin.giteee.model.users.ProfileListItemCallback
+import cn.borealin.giteee.model.users.ProfileListItemData
 
 class ProfileListAdapter(private val onClickListener: ProfileListItemCallback) :
     PagingDataAdapter<ProfileListItemData, ProfileListItemHolder>(ProfileListItemData.DIFF_CALLBACK) {

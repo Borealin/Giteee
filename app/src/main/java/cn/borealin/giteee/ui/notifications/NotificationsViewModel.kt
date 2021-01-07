@@ -13,7 +13,7 @@ import androidx.paging.PagingData
 import androidx.paging.cachedIn
 import cn.borealin.giteee.data.repository.ActivityRepository
 import cn.borealin.giteee.data.repository.ProfileRepository
-import cn.borealin.giteee.model.common.UserEventType
+import cn.borealin.giteee.model.users.UserEventType
 import kotlinx.coroutines.flow.Flow
 
 class NotificationsViewModel @ViewModelInject constructor(
