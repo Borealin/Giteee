@@ -27,7 +27,7 @@ object TimeUtils {
         }
     }
 
-    fun getCurrentDate(): LocalDateTime {
+    private fun getCurrentDate(): LocalDateTime {
         return LocalDateTime.now()
     }
 }

@@ -9,7 +9,7 @@ package cn.borealin.giteee.ui.home
 import android.os.Bundle
 import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import cn.borealin.giteee.R
 import cn.borealin.giteee.databinding.ActivityMainBinding
@@ -26,12 +26,9 @@ class MainActivity : AppCompatActivity() {
         mBinding.apply {
             homeViewModel = mViewModel
             lifecycleOwner = this@MainActivity
-            val navController = findNavController(R.id.nav_host_fragment_activity_navigation)
+            val navController =
+                (supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_navigation) as NavHostFragment).navController
             navView.setupWithNavController(navController)
         }
-    }
-
-    override fun onBackPressed() {
-        super.onBackPressed()
     }
 }

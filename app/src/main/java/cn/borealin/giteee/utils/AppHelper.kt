@@ -6,12 +6,11 @@
 
 package cn.borealin.giteee.utils
 
-import android.content.Context
-
 object AppHelper {
-    lateinit var mContext: Context
-
-    fun init(context: Context) {
-        this.mContext = context
-    }
+    // Don't use static Application context, use DI instead
+//    lateinit var mContext: Context
+//
+//    fun init(context: Context) {
+//        this.mContext = context
+//    }
 }

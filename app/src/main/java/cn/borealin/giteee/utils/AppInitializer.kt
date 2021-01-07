@@ -14,7 +14,7 @@ import timber.log.Timber
 
 class AppInitializer : Initializer<Unit> {
     override fun create(context: Context) {
-        AppHelper.init(context)
+//        AppHelper.init(context)
         if (!BuildConfig.DEBUG) {
             return
         }
