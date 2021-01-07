@@ -59,6 +59,12 @@ data class RawUserEventData(
                         actor.avatarUrl,
                         TimeUtils.fromTimeToRemaining(createdAt)
                     )
+                    "IssueEvent" -> UserEventType.Issue(
+                        actor.name,
+                        repo.humanName,
+                        actor.avatarUrl,
+                        TimeUtils.fromTimeToRemaining(createdAt)
+                    )
                     else -> UserEventType.Undefined(
                         operator = actor.name,
                         avatarUrl = actor.avatarUrl,

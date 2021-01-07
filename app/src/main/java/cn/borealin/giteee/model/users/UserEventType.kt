@@ -26,6 +26,9 @@ sealed class UserEventType(
     class Member(operator: String, target: String, avatarUrl: String?, time: String?) :
         UserEventType(operator, "joined", target, avatarUrl, time)
 
+    class Issue(operator: String, target: String, avatarUrl: String?, time: String?) :
+        UserEventType(operator, "created Issue in", target, avatarUrl, time)
+
     class Undefined(operator: String, avatarUrl: String? = null, time: String? = null) :
         UserEventType(operator, "do something", "", avatarUrl, time)
 
@@ -35,6 +38,7 @@ sealed class UserEventType(
             is Push -> R.drawable.ic_pr_gray_24dp
             is Create -> R.drawable.ic_gists_gray_24dp
             is Member -> R.drawable.ic_organization_gray_24dp
+            is Issue -> R.drawable.ic_issue_gray_24dp
             is Undefined -> R.drawable.ic_unknown_gray_24dp
         }
     }

@@ -23,5 +23,6 @@
     <color name="green_500">#ff0f9d58</color>
     <color name="light_green_500">#ff8bc34a</color>
     <color name="gray_500">#ff9e9e9e</color>
+    <color name="gray_200">#eeeeee</color>
     <color name="red">#ffff0000</color>
 </resources>
